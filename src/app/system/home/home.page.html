@@ -3,15 +3,89 @@
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
+<ion-content>
   <div class="reciclate">
-    <h1 class="reciclate__h1">Reciclar</h1>
+    <h1 class="reciclate__h1 ion-margin-start ion-margin-top">Reciclar</h1>
+    <ion-slides pager="false" [options]="slide">
+      <ion-slide>
+        <ion-card class="reciclate__card">Botella</ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="reciclate__card">Carton</ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="reciclate__card">Bolsa</ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="reciclate__card">Ficha</ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="reciclate__card">Llanta</ion-card>
+      </ion-slide>
+    </ion-slides>
   </div>
-  <div class="deshecha">
-    <h1 class="deshecha__h1">Deshecha</h1>
-    <ion-button expand="block" color="primary" routerLink="/bottle">Bote</ion-button>
+  <div class="deshecha ion-margin-top">
+    <h1 class="deshecha__h1 ion-margin-start ion-margin-top">Deshecha</h1>
+    <ion-slides pager="false" class="deshecha__slides" [options]="slide">
+      <ion-slide>
+        <ion-card class="deshecha__slides__bottle" routerLink="/bottle">
+          <div class="deshecha__slides__bottle__circle"></div>
+          <p>Amarillo</p>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="deshecha__slides__bottle" routerLink="/bottle">
+          <div class="deshecha__slides__bottle__circle"></div>
+          <p>Azul</p>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="deshecha__slides__bottle" routerLink="/bottle">
+          <div class="deshecha__slides__bottle__circle"></div>
+          <p>Verde</p>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
   </div>
-  <div class="extra">
-    <h1 class="extra__h1">Comun</h1>
+  <div class="extra ion-margin-top">
+    <h1 class="extra__h1 ion-margin-start ion-margin-top">Común</h1>
+    <ion-slides pager="false" class="extra__slides" [options]="slide">
+      <ion-slide>
+        <ion-card class="extra__slides__product" routerLink="/product">
+          <div class="extra__slides__product__circle"></div>
+          <div class="extra__slides__product__img">
+            <img src="../../../assets/img/coca.png" alt="">
+          </div>
+          <div class="extra__slides__product__subtitle">
+            <p>Plastico</p>
+            <h2>Botella</h2>
+          </div>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="extra__slides__product" routerLink="/product">
+          <div class="extra__slides__product__circle"></div>
+          <div class="extra__slides__product__img">
+            <img src="../../../assets/img/coca.png" alt="">
+          </div>
+          <div class="extra__slides__product__subtitle">
+            <p>Plastico</p>
+            <h2>Botella</h2>
+          </div>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="extra__slides__product" routerLink="/product">
+          <div class="extra__slides__product__circle"></div>
+          <div class="extra__slides__product__img">
+            <img src="../../../assets/img/coca.png" alt="">
+          </div>
+          <div class="extra__slides__product__subtitle">
+            <p>Plastico</p>
+            <h2>Botella</h2>
+          </div>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
   </div>
 </ion-content>

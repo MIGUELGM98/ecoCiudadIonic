@@ -1,0 +1,133 @@
+ion-slide{
+    width: auto;
+    margin: 16px 0px 16px 16px;
+
+    &:last-child{
+        margin-right: 16px;
+    }
+}
+
+ion-card{
+    margin: 0;
+    padding: 8px;
+}
+
+@mixin bottle($second, $first: false) {
+    @if $first {
+        background-color: $first;
+    }
+    div{
+        background-color: $second;
+    }
+}
+
+%size{
+    width: 150px;
+    height: 185px;
+    display: flex !important;
+    align-items: center !important;
+    // justify-content: center !important;
+    flex-direction: column;
+}
+
+.reciclate{
+    &__card{
+        font-weight: bold;
+        padding: 16px;
+    }
+}
+
+.deshecha{
+    &__slides{
+
+        &__bottle{
+            @extend %size;
+            justify-content: center !important;
+
+            &__circle{
+                width: 100px;
+                height: 100px;
+                margin: 0 auto;
+                background-color: #FFF;
+                border-radius: 50%;
+            }   
+        }
+
+        ion-slide:nth-child(1){
+            ion-card{
+                background: none;
+                @include bottle(var(--ion-color-yellow),  #FCFFD1);
+            }
+        }
+        ion-slide:nth-child(2){
+            ion-card{
+                @include bottle(var(--ion-color-blue), #D1F6FF);
+            }
+        }
+        ion-slide:nth-child(3){
+            ion-card{
+                @include bottle(var(--ion-color-green), #D1FFD9);
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            ion-slide:nth-child(1){
+                ion-card{
+                    @include bottle( var(--ion-color-yellow), $first: false);
+                }
+            }
+            ion-slide:nth-child(2){
+                ion-card{
+                    @include bottle(var(--ion-color-blue), $first: false);
+                }
+            }
+            ion-slide:nth-child(3){
+                ion-card{
+                    @include bottle(var(--ion-color-green), $first: false);
+                }
+            }
+        }
+    }
+}
+
+.extra{
+    &__slides{
+        &__product{
+            padding: 16px;
+            position: relative;
+            @extend %size;
+
+            &__circle{
+                z-index: 2;
+                position: absolute;
+                display: inline-block;
+                top: 16px;
+                right: 16px;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: var(--ion-color-yellow);
+            }
+            &__img{
+                position: relative;
+                height: 100px;
+                width: 100%;
+            }
+            &__subtitle{
+                width: 100%;
+                display: block;
+                padding: 16px 0;
+                position: relative;
+                p{
+                    text-align: left;
+                    margin: 0;
+                }
+                h2{
+                    text-align: left;
+                    font-weight: bold;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
