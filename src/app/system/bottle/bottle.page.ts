@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BottlePage implements OnInit {
 
-  constructor() { }
+  public informacion: boolean;
+
+  constructor() {
+    this.informacion = true;
+  }
 
   ngOnInit() {
+  }
+
+  state(value){
+    console.log(value);
+    this.informacion =  value === 1 ? true : false;
   }
 
 }

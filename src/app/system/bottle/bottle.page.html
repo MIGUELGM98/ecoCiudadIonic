@@ -24,51 +24,73 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <div class="buttons ion-margin-top">
-    <button class="buttons__custom">Información</button>
-    <button class="buttons__custom">Articulos</button>
+  <div class="buttons">
+    <button class="buttons__custom" (click)="state(1)">Información</button>
+    <button class="buttons__custom" (click)="state(0)">Articulos</button>
   </div>
-  <div class="information ion-margin-top">
-    <h1 class="information__h1">Información</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ipsam neque est temporibus consectetur distinctio veniam illum voluptates ullam illo harum a, repudiandae quidem ut architecto voluptate quae ex animi?</p>
-  </div>
-  <div class="question ion-margin-top">
-    <h1 class="question__h1">¿Sabias que?</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, aliquid, magnam perferendis totam, itaque hic fugit quae ratione temporibus adipisci eaque accusamus eos quisquam eveniet animi odit. Commodi, voluptates velit.</p>
-  </div>
-  <ion-card class="bottle ion-margin-top">
+  <ng-container *ngIf="informacion">
+    <div class="information">
+      <h1 class="information__h1">Información</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ipsam neque est temporibus consectetur distinctio veniam illum voluptates ullam illo harum a, repudiandae quidem ut architecto voluptate quae ex animi?</p>
+    </div>
+    <div class="information">
+      <h1 class="information__h1">¿Sabias que?</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, aliquid, magnam perferendis totam, itaque hic fugit quae ratione temporibus adipisci eaque accusamus eos quisquam eveniet animi odit. Commodi, voluptates velit.</p>
+    </div>
+    <ion-card class="bottle--do ion-margin-top">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <div class="bottle__icon">
+              <ion-icon name="wine-outline"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col size="10">
+            <div class="bottle__description">
+              <h3>Deposita</h3>
+              <p>sit amet</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-card class="bottle--dont ion-margin-top">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <div class="bottle__icon">
+              <ion-icon name="wine-outline"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col size="10">
+            <div class="bottle__description">
+              <h3>No deposites</h3>
+              <p>sit amet</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ng-container>
+  <ng-container *ngIf="!informacion">
+    <div class="information">
+      <h1>Articulos</h1>
+    </div>
     <ion-grid>
       <ion-row>
-        <ion-col size="2">
-          <div class="bottle__icon">
-            <ion-icon name="wine-outline"></ion-icon>
-          </div>
-        </ion-col>
-        <ion-col size="10">
-          <div class="bottle__description">
-            <h3>lorem ipsum</h3>
-            <p>sit amet</p>
-          </div>
+        <ion-col size="6" class="extra" *ngFor="let i of [1,1,1,1,1,1,1]">
+            <ion-card class="extra__slides__product" routerLink="/product">
+              <div class="extra__slides__product__circle"></div>
+              <div class="extra__slides__product__img">
+                <img src="../../../assets/img/coca.png" alt="">
+              </div>
+              <div class="extra__slides__product__subtitle">
+                <p>Plastico</p>
+                <h2>Botella</h2>
+              </div>
+          </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card>
-  <ion-card class="bottle ion-margin-top">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="2">
-          <div class="bottle__icon">
-            <ion-icon name="wine-outline"></ion-icon>
-          </div>
-        </ion-col>
-        <ion-col size="10">
-          <div class="bottle__description">
-            <h3>lorem ipsum</h3>
-            <p>sit amet</p>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-
+  </ng-container>
 </ion-content>
