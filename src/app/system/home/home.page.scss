@@ -38,6 +38,9 @@ ion-card{
 }
 
 .deshecha{
+    p{
+        font-size: 18px;
+    }
     &__slides{
 
         &__bottle{
@@ -48,8 +51,22 @@ ion-card{
                 width: 100px;
                 height: 100px;
                 margin: 0 auto;
-                background-color: #FFF;
+                background-color: rgb(133, 119, 119);
                 border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &__icon{
+                    font-size: 40px;
+                    color: #fff;
+                }
+
+                @media(prefers-color-scheme: dark){
+                    .deshecha__slides__bottle__circle__icon{
+                        color: #222;
+                    }
+                }
             }   
         }
 
@@ -73,17 +90,17 @@ ion-card{
         @media (prefers-color-scheme: dark) {
             ion-slide:nth-child(1){
                 ion-card{
-                    @include bottle( var(--ion-color-yellow), $first: false);
+                    @include bottle( var(--ion-color-yellow), #222);
                 }
             }
             ion-slide:nth-child(2){
                 ion-card{
-                    @include bottle(var(--ion-color-blue), $first: false);
+                    @include bottle(var(--ion-color-blue), #222);
                 }
             }
             ion-slide:nth-child(3){
                 ion-card{
-                    @include bottle(var(--ion-color-green), $first: false);
+                    @include bottle(var(--ion-color-green), #222);
                 }
             }
         }
