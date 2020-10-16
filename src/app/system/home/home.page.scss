@@ -7,11 +7,6 @@ ion-slide{
     }
 }
 
-ion-card{
-    margin: 0;
-    padding: 8px;
-}
-
 @mixin bottle($second, $first: false) {
     @if $first {
         background-color: $first;

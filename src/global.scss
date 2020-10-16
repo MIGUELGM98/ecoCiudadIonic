@@ -27,6 +27,7 @@
 
 *{
     outline: none !important;
+    font-family: Montserrat;
 }
 h1{
     font-weight: bold;
@@ -34,6 +35,8 @@ h1{
 }
 
 ion-card{
+    margin: 0;
+    padding: 8px;
     color: #000;
 }
 
