@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { UbicationPageRoutingModule } from './ubication-routing.module';
 
 import { UbicationPage } from './ubication.page';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   imports: [

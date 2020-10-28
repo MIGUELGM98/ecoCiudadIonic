@@ -29,6 +29,19 @@ ion-slide{
     &__card{
         font-weight: bold;
         padding: 16px;
+        
+        &__inner{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__item{
+            margin-left: 8px;
+        }
+        img{
+            height: 20px;
+        }
     }
 }
 
@@ -41,6 +54,21 @@ ion-slide{
         &__bottle{
             @extend %size;
             justify-content: center !important;
+
+            &__description{
+                margin-top: 16px;
+                background: none !important;
+                p{
+                    margin: 0;
+                    &:nth-child(1){
+                        font-size: 12px;
+                    }
+                    &:nth-child(2){
+                        font-weight: 500;
+                    }
+                }
+            }
+
 
             &__circle{
                 width: 100px;
@@ -109,6 +137,18 @@ ion-slide{
             position: relative;
             @extend %size;
 
+            .yellow{
+                background-color: var(--ion-color-yellow);
+            }
+
+            .blue{
+                background-color: var(--ion-color-blue);
+            }
+
+            .green{
+                background-color: var(--ion-color-green);
+            }
+
             &__circle{
                 z-index: 2;
                 position: absolute;
@@ -118,7 +158,17 @@ ion-slide{
                 width: 30px;
                 height: 30px;
                 border-radius: 50%;
-                background-color: var(--ion-color-yellow);
+                
+                
+
+                span{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 12px;
+                    color: #FFF;
+                }
             }
             &__img{
                 position: relative;

@@ -1,3 +1,32 @@
 <ion-app>
-  <ion-router-outlet mode="ios"></ion-router-outlet>
+  <!-- <ion-router-outlet mode="ios"></ion-router-outlet> -->
+  <ion-split-pane contentId="menu-content" when="xs" [disabled]="true" (ionSplitPaneVisible)="onSplitPaneVisible(event)">
+    <ion-menu contentId="menu-content" menuId="menu-content" side="end" type="overlay">
+      <ion-header >
+        <ion-toolbar>
+          <ion-title>Cuenta</ion-title>
+
+          <ion-buttons slot="end">
+            <ion-button (click)="exit()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="ion-padding">
+          <ion-avatar>
+            <img src="https://assets.soyfutbol.com/__export/1601054527995/sites/debate/img/2020/09/25/jam_m_125257_x1x_crop1601054525708.jpg_943222218.jpg" alt="">
+          </ion-avatar>
+          <h1 class="ion-margin-top">Filiberto Salazar</h1>
+          <p class="ion-no-margin">correo@gmail.com</p>
+        </div>
+        <ion-list>
+          <ion-item lines="full">Configuración</ion-item>
+          <ion-item lines="full" (click)="logout()">Cerrar Sesión</ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="menu-content" mode="ios"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

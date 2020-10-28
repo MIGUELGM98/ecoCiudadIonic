@@ -1,9 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding" mode="ios">
-  <ion-button color="primary" expand="block" routerLink="/menu">Login</ion-button>
+  <div class="login">
+    <div class="login__top">
+      <img src="../../../assets/img/logo.png" alt="">
+    </div>
+    <div class="login__bottom">
+      <button (click)="navigate()">
+        Iniciar sesión
+      </button>
+      <a  (click)="navigate()">Iniciar sesión sin registrarme</a>
+      <!-- <ion-button color="primary" expand="block" (click)="navigate()">Login</ion-button> -->
+    </div>
+  </div>
 </ion-content>

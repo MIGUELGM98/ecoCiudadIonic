@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReciclatePage implements OnInit {
 
-  constructor() { }
+  public slide: any;
+
+  constructor() {
+    this.slide = {
+      slidesPerView: 'auto'
+    }
+  }
 
   ngOnInit() {
   }

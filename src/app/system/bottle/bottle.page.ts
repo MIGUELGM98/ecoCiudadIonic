@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-bottle',
@@ -8,8 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class BottlePage implements OnInit {
 
   public informacion: boolean;
+  public content: number;
 
-  constructor() {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private navCtrl: NavController
+  ) {
+    this.content = this.activatedRoute.snapshot.params.id;
     this.informacion = true;
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-product',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductPage implements OnInit {
 
-  constructor() { }
+  public informacion: boolean = true;
+
+  constructor(
+    private navCtrl: NavController
+  ) { }
 
   ngOnInit() {
+  }
+
+  state(value){
+    console.log(value);
+    this.informacion =  value === 1 ? true : false;
+  }
+
+  openVideo(){
+    window.open("https://www.youtube.com/watch?v=1skPkyiln2s");
   }
 
 }

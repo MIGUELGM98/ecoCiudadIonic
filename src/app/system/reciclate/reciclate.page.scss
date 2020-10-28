@@ -1,0 +1,135 @@
+ion-slide{
+    width: auto;
+    margin: 16px 0px 16px 16px;
+
+    &:last-child{
+        margin-right: 16px;
+    }
+}
+
+.reciclate{
+    &__card{
+        font-weight: bold;
+        padding: 16px;
+        
+        &__inner{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__item{
+            margin-left: 8px;
+            position: relative;
+
+            input[type="radio"]{
+                position: absolute;
+                opacity: 0;
+
+                &:checked + label{
+                    background-color: var(--ion-color-secondary);
+                    color: #FFF;
+                }
+            }
+
+            label{
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                padding: 16px;
+                display: block;
+                background-color: #FFF;
+                font-size: 14px;
+                border-radius: 8px;
+                box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
+                transition: 100ms background-color;
+                
+
+                img{
+                    height: 20px;
+                    margin-right: 8px;
+                }
+            }
+        }
+        img{
+            height: 20px;
+        }
+    }
+}
+
+%size{
+    height: 185px;
+    display: flex !important;
+    align-items: center !important;
+    // justify-content: center !important;
+    flex-direction: column;
+}
+
+.extra{
+    &__slides{
+        &__product{
+            padding: 16px;
+            position: relative;
+            @extend %size;
+
+            .yellow{
+                background-color: var(--ion-color-yellow);
+            }
+
+            .blue{
+                background-color: var(--ion-color-blue);
+            }
+
+            .green{
+                background-color: var(--ion-color-green);
+            }
+
+            &__circle{
+                z-index: 2;
+                position: absolute;
+                display: inline-block;
+                top: 16px;
+                right: 16px;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                
+                
+
+                span{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 12px;
+                    color: #FFF;
+                }
+            }
+            &__img{
+                position: relative;
+                height: 100px;
+                width: 100%;
+                text-align: center;
+                img{
+                    max-height: 100%;
+                }
+            }
+            &__subtitle{
+                width: 100%;
+                display: block;
+                padding: 16px 0;
+                position: relative;
+                p{
+                    text-align: left;
+                    margin: 0;
+                }
+                h2{
+                    text-align: left;
+                    font-weight: bold;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

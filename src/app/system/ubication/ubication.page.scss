@@ -1,0 +1,133 @@
+.relative{
+    position: relative;
+}
+
+.map{
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    position: relative;
+    z-index: 1;
+    &__card{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+
+        ion-card{
+            background-color: var(--ion-color-secondary);
+            overflow: visible;
+        }
+
+        &__card{
+            border-radius: .5em;
+            padding: 8px;
+            background-color: var(--ion-color-secondary);
+        }
+
+        &__item{
+            p{
+                margin: 0;
+                &:nth-child(1){
+                    color: #FFF;
+                    font-weight: bold;
+                }
+                &:nth-child(2){
+                    color: #FFF;
+                }
+            }
+        }
+
+        &__button{
+            display: flex;
+            justify-content: flex-end;
+            &__item{
+                display: block;
+                position: relative;
+                width: 40px;
+                height: 40px;
+                input{
+                    z-index: 999;
+                    cursor: pointer;
+                    display: block;
+                    width: 40px; 
+                    height: 40px;
+                    background-color: white;
+                    opacity: 0;
+
+                    &:checked + div{
+                        button{
+                            &:nth-child(1){
+                                transition-delay: 300ms;
+                                top: -50px;
+                            }
+                            &:nth-child(2){
+                                transition-delay: 200ms;
+                                top: -100px;
+                            }
+                            &:nth-child(3){
+                                transition-delay: 100ms;
+                                top: -150px;
+                            }
+                        }
+                    }
+                }
+                label{
+                    cursor: pointer;
+                    z-index: 1;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    width: 40px;
+                    height: 40px;
+                    background-color: #eaeaea;
+                    border-radius: 50%;
+                    color: var(--ion-color-secondary);
+
+                    &:active{
+                        background-color: #e2e2e2;
+                    }
+                    *{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                &__custom{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    button{
+                        transition: 300ms ease;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: #eaeaea;
+                        
+
+                        &:nth-child(1){
+                            color: var(--ion-color-blue);
+                            background-color: #D1F6FF;
+                        }
+                        &:nth-child(2){
+                            color: var(--ion-color-green);
+                            background-color: #D1FFD9;
+                        }
+                        &:nth-child(3){
+                            color: var(--ion-color-yellow);
+                            background-color:  #FCFFD1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

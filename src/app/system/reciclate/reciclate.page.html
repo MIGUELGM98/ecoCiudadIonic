@@ -3,12 +3,180 @@
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
+<ion-content>
   <div class="reciclate">
-    <h1 class="reciclate__h1">Reciclar</h1>
-    <div class="reciclate__options"></div>
-    <div class="reciclate__articles">
-      <ion-button slot="secondary" expand="block" routerLink="/product">Botella</ion-button>
-    </div>
+    <h1 class="reciclate__h1 ion-margin-start ion-margin-top">Reciclar</h1>
+    <ion-slides pager="false" [options]="slide">
+      <ion-slide>
+        <div class="reciclate__card__item">
+          <input type="radio" name="reciclate" id="todo" checked>
+          <label for="todo">
+            <!-- <img src="../../../assets/img/bottle.png" alt=""> -->
+            Todo
+          </label>
+        </div> 
+      </ion-slide>
+      <ion-slide>
+        <div class="reciclate__card__item">
+          <input type="radio" name="reciclate" id="bottle">
+          <label for="bottle">
+            <img src="../../../assets/img/bottle.png" alt="">
+            Plastico
+          </label>
+        </div> 
+      </ion-slide>
+      <ion-slide>
+        <div class="reciclate__card__item">
+          <input type="radio" name="reciclate" id="can">
+          <label for="can">
+            <img src="../../../assets/img/can.png" alt="">
+            Latas
+          </label>
+        </div> 
+      </ion-slide>
+      <ion-slide>
+        <div class="reciclate__card__item">
+          <input type="radio" name="reciclate" id="carton">
+          <label for="carton">
+            <img src="../../../assets/img/carton.png" alt="">
+            Cartón
+          </label>
+        </div> 
+      </ion-slide>
+      <ion-slide>
+        <div class="reciclate__card__item">
+          <input type="radio" name="reciclate" id="paper">
+          <label for="paper">
+            <img src="../../../assets/img/papel.png" alt="">
+            Papel
+          </label>
+        </div> 
+      </ion-slide>
+      <ion-slide>
+        <div class="reciclate__card__item">
+          <input type="radio" name="reciclate" id="tapa">
+          <label for="tapa">
+            <img src="../../../assets/img/tapa.png" alt="">
+            Vidrio
+          </label>
+        </div> 
+      </ion-slide>
+    </ion-slides>
+    <ion-grid class="ion-padding">
+      <ion-row>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product" routerLink="/product">
+            <div class="extra__slides__product__circle green">
+              <span><i class="fas fa-recycle"></i></span>
+            </div>
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/cocavidrio.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Vidrio</p>
+              <h2>Envase</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product" routerLink="/product">
+            <div class="extra__slides__product__circle yellow">
+              <span><i class="fas fa-recycle"></i></span>
+            </div>
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/coca.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Aluminio</p>
+              <h2>Lata</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product" routerLink="/product">
+            <div class="extra__slides__product__circle blue">
+              <span><i class="fas fa-recycle"></i></span>
+            </div>
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/caja.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Carton</p>
+              <h2>Caja</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product" routerLink="/product">
+            <div class="extra__slides__product__circle green">
+              <span><i class="fas fa-recycle"></i></span>
+            </div>
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/sabritas.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Plastico</p>
+              <h2>Bolsa</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product" routerLink="/product">
+            <div class="extra__slides__product__circle yellow">
+              <span><i class="fas fa-recycle"></i></span>
+            </div>
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/botella.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Plastico</p>
+              <h2>Botella</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product" routerLink="/product">
+            <div class="extra__slides__product__circle blue">
+              <span><i class="fas fa-recycle"></i></span>
+            </div>
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/periodico.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Papel</p>
+              <h2>Periodico</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product" routerLink="/product">
+            <div class="extra__slides__product__circle blue">
+              <span><i class="fas fa-recycle"></i></span>
+            </div>
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/carpeta.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Cartón</p>
+              <h2>Carpeta</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product" routerLink="/product">
+            <div class="extra__slides__product__circle yellow">
+              <span><i class="fas fa-recycle"></i></span>
+            </div>
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/popote.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Plastico</p>
+              <h2>Popote</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

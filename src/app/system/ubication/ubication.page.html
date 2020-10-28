@@ -1,16 +1,58 @@
-<ion-header>
+<ion-header mode="ios">
   <ion-toolbar>
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<div class="map">
-  <div class="map__card">
-    
-  </div>
+<ion-content class="relative">
+  <!-- Este es un mapa -->
+<div id="map" class="map">
+</div>
+<!-- Fin del mapa -->
+<div class="map__card ion-padding">
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-avatar>
+            <img src="https://assets.soyfutbol.com/__export/1601054527995/sites/debate/img/2020/09/25/jam_m_125257_x1x_crop1601054525708.jpg_943222218.jpg" alt="">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="8">
+                <div class="map__card__item">
+                  <p>{{name}}</p>
+                  <p>Mostrando todo</p>
+                </div>
+              </ion-col>
+              <ion-col size="4">
+                <div class="map__card__button">    
+                  <span class="map__card__button__item">
+                    <label for="check">
+                      <ion-icon name="settings"></ion-icon>
+                    </label>
+                    <input type="checkbox" id="check" (click)="button()">
+                    <div class="map__card__button__item__custom move">
+                      <button>
+                        <ion-icon name="trash"></ion-icon>
+                      </button>
+                      <button>
+                        <ion-icon name="trash"></ion-icon>
+                      </button>
+                      <button>
+                        <ion-icon name="trash"></ion-icon>
+                      </button>
+                    </div>
+                  </span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </div>
 </ion-content>
-<ion-footer>
-  <ion-button expand="block" color="secondary">Persona</ion-button>
-</ion-footer>

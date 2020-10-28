@@ -2,6 +2,14 @@ p, h3{
     margin: 0;
 }
 
+ion-card{
+    border-radius: 1em;
+}
+
+input[type="radio"]{
+
+}
+
 @mixin doanddont($first, $second){
     background-color: $first;
     box-shadow: none;
@@ -16,9 +24,35 @@ p, h3{
         }
     }
 }
+
+.back{
+    &__button{
+        height: 35px;
+        width: 35px;
+        background: none;
+        border-radius: 50%;
+        font-size: 24px;
+
+        &:active{
+            background-color: #eaeaea;
+        }
+    }
+}
+
 .bottle{
     padding: 8px;
-    background-color: #D1F6FF;
+
+    &--yellow{
+        background-color: #FCFFD1;
+    }
+
+    &--blue{
+        background-color: #D1F6FF;
+    }
+
+    &--green{
+        background-color: #D1FFD9;
+    }
 
     @media(prefers-color-scheme: dark){
         background-color: #222;
@@ -35,7 +69,19 @@ p, h3{
     }
 
     &__icon{
-        background-color: var(--ion-color-blue);
+
+        &--blue{
+            background-color: var(--ion-color-blue);
+        }
+
+        &--yellow{
+            background-color: var(--ion-color-yellow);
+        }
+
+        &--green{
+            background-color: var(--ion-color-green);
+        }
+
         width: 40px;
         height: 40px;
         border-radius: .5em;
@@ -58,6 +104,27 @@ p, h3{
 .buttons{
     margin-top: 24px;
     display: flex;
+
+    &__item{
+        position: relative;
+
+        input[type="radio"]{
+            position: absolute;
+            z-index: 1;
+            top: -500px;
+            left: -500px;
+            opacity: 0;
+
+            &:checked + label{
+                background-color: #e2e2e2;
+            }
+        }
+
+        label{
+            font-size: 12px;
+            z-index: 999;
+        }
+    }
     &__custom{
         padding: 5px 20px;
         border-radius: 1em;
@@ -71,12 +138,21 @@ p, h3{
 }
 
 .information{
-    margin: 24px 0;
+    margin: 36px 0;
     p{
         margin: 16px 0;
         font-size: 14px;
         font-weight: 300;
+        color: #8B8B8B;
     }
+}
+
+%size{
+    height: 185px;
+    display: flex !important;
+    align-items: center !important;
+    // justify-content: center !important;
+    flex-direction: column;
 }
 
 .extra{
@@ -84,11 +160,19 @@ p, h3{
         &__product{
             padding: 16px;
             position: relative;
-            width: 100%;
-            display: flex !important;
-            align-items: center !important;
-            // justify-content: center !important;
-            flex-direction: column;
+            @extend %size;
+
+            .yellow{
+                background-color: var(--ion-color-yellow);
+            }
+
+            .blue{
+                background-color: var(--ion-color-blue);
+            }
+
+            .green{
+                background-color: var(--ion-color-green);
+            }
 
             &__circle{
                 z-index: 2;
@@ -99,17 +183,25 @@ p, h3{
                 width: 30px;
                 height: 30px;
                 border-radius: 50%;
-                background-color: var(--ion-color-yellow);
+                
+                
+
+                span{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 12px;
+                    color: #FFF;
+                }
             }
             &__img{
-                text-align: center;
                 position: relative;
-                margin: 0 auto;
                 height: 100px;
-                width: 100px;
+                width: 100%;
+                text-align: center;
                 img{
-                    width: auto;
-                    height: 100%;
+                    max-height: 100%;
                 }
             }
             &__subtitle{

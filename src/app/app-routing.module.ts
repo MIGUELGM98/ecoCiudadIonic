@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./system/settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
-    path: 'bottle',
+    path: 'bottle/:id',
     loadChildren: () => import('./system/bottle/bottle.module').then( m => m.BottlePageModule)
   },
   {
