@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Map, tileLayer, Marker, marker, circle } from 'leaflet';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Icons } from 'src/app/utils/icon.utils';
-import { PopoverController } from '@ionic/angular';
+import { NavController, PopoverController } from '@ionic/angular';
 import { InformationComponent } from 'src/app/components/information/information.component';
 
 @Component({
@@ -17,7 +17,7 @@ export class UbicationPage implements OnInit {
   public map: Map;
   public marker: any;
 
-  //Options
+  //Options 
   public lat: number;
   public lon: number;
   public name: string;
@@ -29,7 +29,8 @@ export class UbicationPage implements OnInit {
 
   constructor(
     private geolocation: Geolocation,
-    public popOverCtrl: PopoverController
+    public popOverCtrl: PopoverController,
+    public navCtrl: NavController
   ) {
     this.icon = new Icons();
     this.lat = 22.7433;
@@ -53,7 +54,9 @@ export class UbicationPage implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter(){
-    this.loadMap();
+    if(!this.map){
+      this.loadMap();
+    }
   }
 
   loadMap(): void{
@@ -123,6 +126,11 @@ export class UbicationPage implements OnInit {
 
   button(){
     console.log("Test");
+  }
+
+  move(){
+    this.navCtrl.navigateForward('/report');
+    // this.map.remove();
   }
 
   async information(){

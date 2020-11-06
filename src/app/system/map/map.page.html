@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="report"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ubicación</ion-title> 
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="buttons">
+      <button class="buttons__acept" (click)="navCtrl.back()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </button>
+      <button class="buttons__cancel">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+    </div>
+  <div id="report" class="map">
+  </div>
+</ion-content>

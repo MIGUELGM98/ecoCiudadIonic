@@ -24,7 +24,7 @@
               <ion-col size="8">
                 <div class="map__card__item">
                   <p>{{name}}</p>
-                  <p>Mostrando todo</p>
+                  <p>Viendo ecoMapa</p>
                 </div>
               </ion-col>
               <ion-col size="4">
@@ -35,7 +35,7 @@
                     </label>
                     <input type="checkbox" id="check" (click)="button()">
                     <div class="map__card__button__item__custom move">
-                      <button>
+                      <button (click)="move()">
                         <ion-icon name="trash"></ion-icon>
                       </button>
                       <button (click)="information()">

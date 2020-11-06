@@ -1,0 +1,54 @@
+<ion-content class="ion-padding">
+  <div class="back ion-margin-bottom">
+    <button class="back__button ion-margin-bottom" (click)="navCtrl.navigateBack('/menu/ubication')">
+      <ion-icon name="chevron-back"></ion-icon>
+    </button>
+    <p class="top">Generar</p>
+    <h1>Reporte</h1>
+  </div>
+  <ion-list class="ion-no-padding">
+    <ion-item lines="full" routerLink="map">
+      <ion-label>
+        Ubicación
+      </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>Tipo</ion-label>
+      <ion-select placeholder="Selecciona">
+        <ion-select-option value="f">Fuga de agua</ion-select-option>
+        <ion-select-option value="m">Contaminación</ion-select-option>
+        <ion-select-option value="o">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- <ion-item lines="full">
+        <ion-label position="floating">Especificar</ion-label>
+        <ion-input></ion-input>
+    </ion-item> -->
+    <ion-item lines="full">
+      <ion-label position="floating">Comentarios</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-card class="bottle">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <div class="bottle__icon">
+            <ion-icon name="camera"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="10">
+          <div class="bottle__description">
+            <span>Fotografia</span>
+            <p>Toma una fotografia para hacer valido el reporte.</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-button expand="block" (click)="generate()" color="secondary">
+    Enviar reporte
+  </ion-button>
+</ion-footer>

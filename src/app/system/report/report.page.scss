@@ -1,0 +1,55 @@
+p, h3{
+    margin: 0;
+}
+
+.back{
+    &__button{
+        height: 35px;
+        width: 35px;
+        background: none;
+        border-radius: 50%;
+        font-size: 24px;
+
+        &:active{
+            background-color: #eaeaea;
+        }
+    }
+}
+
+.bottle{
+    margin-top: 16px;
+    padding: 8px;
+    background-color: #eaeaea;
+    box-shadow: none;
+
+    @media(prefers-color-scheme: dark){
+        background-color: #222;
+    }
+
+    &__icon{
+        width: 40px;
+        height: 40px;
+        border-radius: .5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        ion-icon{
+            font-size: 24px;
+            color: #8b8b8b;
+        }
+    }
+
+    &__description{
+        span{
+            font-weight: bold;
+        }
+        p{
+            font-weight: 200;
+        }
+    }
+}
+
+ion-button{
+    --ion-color-contrast: #fff !important;
+}
