@@ -1,0 +1,78 @@
+<ion-content class="ion-padding">
+  <div class="back ion-margin-bottom">
+    <button class="back__button" (click)="navCtrl.back()">
+      <ion-icon name="chevron-back"></ion-icon>
+    </button>
+    <p class="top">Aviso</p>
+    <h1>COVID-19</h1>
+  </div>
+  <ion-card class="bottle">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <div class="bottle__icon"  [ngClass]="{'bottle__icon--yellow': content == 1, 'bottle__icon--blue': content == 2, 'bottle__icon--green': content == 3}">
+            <ion-icon name="warning"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="10">
+          <div class="bottle__description">
+            <span>Información sanitaria</span>
+            <p>Conoce los cambios sobre el coronavirus para cuidarte.</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+    <div class="animate__animated animate__fadeIn">
+      <div class="information">
+        <h1 class="information__h1">Información</h1>
+        <p>La enfermedad por coronavirus (COVID 19) es una enfermedad infecciosa causada por un coronavirus recientemente descubierto.</p>
+        <ion-card class="NO ion-padding">NO toques cubrebocas, toallas, guantes, que no sean tuyos.</ion-card>
+      </div>
+      <div class="information">
+        <h1 class="information__h1 ion-margin-bottom">Instrucciones de deshecho</h1>
+        <!-- <p>Usted puede infectarse al inhalar el virus si está cerca de una persona con COVID‑19 o si, tras tocar una superficie contaminada, se toca los ojos, la nariz o la boca.</p> -->
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-card>
+                <img src="../../../assets/img/hands.png" alt="">
+                <div class="ion-text-center">
+                  <p>Quita tu cubrebocas</p>
+                </div>
+              </ion-card>
+            </ion-col>
+            <ion-col size="6">
+              <ion-card>
+                <img src="../../../assets/img/mask.png" alt="">
+                <div class="ion-text-center">
+                  <p>Ponlo en una bolsa de plastico</p>
+                </div>
+              </ion-card>
+            </ion-col>
+            <ion-col size="6">
+              <ion-card>
+                <img src="../../../assets/img/trash.png" alt="">
+                <div class="ion-text-center">
+                  <p>Tiralo en un cesto de basura</p>
+                </div>
+              </ion-card>
+            </ion-col>
+            <ion-col size="6">
+              <ion-card>
+                <img src="../../../assets/img/washhands.png" alt="">
+                <div class="ion-text-center">
+                  <p>Lava tus manos con agua y jabon</p>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      
+    </div>
+
+
+    
+</ion-content>
