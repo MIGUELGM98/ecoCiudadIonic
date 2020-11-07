@@ -9,12 +9,16 @@
   <ion-card class="bottle">
     <ion-grid>
       <ion-row>
-        <ion-col size="2">
-          <div class="bottle__icon bottle__icon--yellow">
+        <ion-col size="3">
+          <!-- <div class="bottle__icon bottle__icon--yellow">
             <ion-icon name="wine-outline"></ion-icon>
+          </div> -->
+          <div class="bottle__logo">
+            <span></span>
+            <img src="../../../assets/img/botella.png" alt="">
           </div>
         </ion-col>
-        <ion-col size="10">
+        <ion-col size="9">
           <div class="bottle__description">
             <h3>
               Botella
@@ -44,18 +48,18 @@
     <div class="animate__animated animate__fadeIn">
       <div class="information">
         <h1 class="information__h1">Información</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ipsam neque est temporibus consectetur distinctio veniam</p>
+        <p>Las botellas de plástico están hechas de petróleo: se necesitan 100 ml. de petróleo para producir una sola botella de plástico.</p>
       </div>
       <div class="information">
         <h1 class="information__h1">¿Sabias que?</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, aliquid, magnam perferendis totam, itaque hic fugit quae ratione temporibus.</p>
+        <p>Una botella de plástico tarda cientos de años en descomponerse y hacen falta unos 100 millones de litros de petróleo para fabricar mil millones de botellas.</p>
       </div>
       <ion-card class="bottle--yellow ion-margin-top">
         <ion-grid>
           <ion-row>
             <ion-col size="2">
               <div class="bottle__icon bottle--yellow-strong">
-                <ion-icon name="wine-outline"></ion-icon>
+                <ion-icon name="trash"></ion-icon>
               </div>
             </ion-col>
             <ion-col size="10">
@@ -75,7 +79,44 @@
     <div class="information">
       <h1>Ideas</h1>
     </div>
-    <ion-card class="bottle ion-margin-bottom">
+    <ion-grid class="">
+      <ion-row>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product">
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/maceta.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Botella</p>
+              <h2>Maceta</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product">
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/Lapicera.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Botella</p>
+              <h2>Lapicera</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" class="extra">
+          <ion-card class="extra__slides__product">
+            <div class="extra__slides__product__img">
+              <img src="../../../assets/img/monedero.png" alt="">
+            </div>
+            <div class="extra__slides__product__subtitle">
+              <p>Botella</p>
+              <h2>Cartera</h2>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- <ion-card class="bottle ion-margin-bottom">
       <ion-grid>
         <ion-row>
           <ion-col size="2">
@@ -131,7 +172,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card>
+    </ion-card> -->
   </div>
   </ng-container>
 </ion-content>

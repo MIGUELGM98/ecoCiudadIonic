@@ -8,16 +8,18 @@
 
 <ion-content class="ion-padding">
   <div class="back ion-margin-bottom">
-    <button class="back__button" (click)="navCtrl.back()">
+    <button class="back__button ion-margin-bottom" (click)="navCtrl.back()">
       <ion-icon name="chevron-back"></ion-icon>
     </button>
+    <p>Tipos de</p>
+    <h1>Botes</h1>
   </div>
   <ion-card class="bottle" [ngClass]="{'bottle--yellow': content == 1, 'bottle--blue': content == 2, 'bottle--green': content == 3}">
     <ion-grid>
       <ion-row>
         <ion-col size="2">
           <div class="bottle__icon"  [ngClass]="{'bottle__icon--yellow': content == 1, 'bottle__icon--blue': content == 2, 'bottle__icon--green': content == 3}">
-            <ion-icon name="wine-outline"></ion-icon>
+            <ion-icon name="trash"></ion-icon>
           </div>
         </ion-col>
         <ion-col size="10">
@@ -49,24 +51,24 @@
     <div class="animate__animated animate__fadeIn">
       <div class="information">
         <h1 class="information__h1">Información</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ipsam neque est temporibus consectetur distinctio veniam</p>
+        <p>En los contenedores amarillos se deben depositar todo tipo de envases y productos fabricados con plásticos como botellas, envases de alimentación o bolsas.</p>
       </div>
       <div class="information">
         <h1 class="information__h1">¿Sabias que?</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, aliquid, magnam perferendis totam, itaque hic fugit quae ratione temporibus adipisci eaque accusamus eos quisquam eveniet animi odit. Commodi, voluptates velit.</p>
+        <p>88 latas de refresco es equivalente a una llanta de bicicleta. ¿Que prefieres? ¿Tirar latas y contaminar? ¿O usar tu bicicleta?</p>
       </div>
       <ion-card class="bottle--do ion-margin-top">
         <ion-grid>
           <ion-row>
             <ion-col size="2">
               <div class="bottle__icon">
-                <ion-icon name="wine-outline"></ion-icon>
+                <ion-icon name="checkmark-outline"></ion-icon>
               </div>
             </ion-col>
             <ion-col size="10">
               <div class="bottle__description">
                 <h3>Deposita</h3>
-                <p>sit amet</p>
+                <p>Botellas y envases de plástico, envases metálicos, Briks.</p>
               </div>
             </ion-col>
           </ion-row>
@@ -77,13 +79,13 @@
           <ion-row>
             <ion-col size="2">
               <div class="bottle__icon">
-                <ion-icon name="wine-outline"></ion-icon>
+                <ion-icon name="close-outline"></ion-icon>
               </div>
             </ion-col>
             <ion-col size="10">
               <div class="bottle__description">
                 <h3>No deposites</h3>
-                <p>sit amet</p>
+                <p>Juguetes de plástico, biberonas y chupetes, utensilios de cocina, cubos de plástico.</p>
               </div>
             </ion-col>
           </ion-row>
