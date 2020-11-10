@@ -13,6 +13,10 @@ const routes: Routes = [
         loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
       },
       {
+        path:'game-list',
+        loadChildren:()=> import('../game-list/game-list.module').then(m=> m.GameListPageModule)
+      },
+      { 
         path: 'ubication',
         loadChildren: () => import('../ubication/ubication.module').then( m => m.UbicationPageModule)
       },

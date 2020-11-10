@@ -42,7 +42,15 @@ const routes: Routes = [
    {
     path: 'slash',
     loadChildren: () => import('./system/slash/slash.module').then( m => m.SlashPageModule)
-  }, 
+  },   {
+    path: 'games',
+    loadChildren: () => import('./system/games/games.module').then( m => m.GamesPageModule)
+  },
+  {
+    path: 'game-list',
+    loadChildren: () => import('./system/game-list/game-list.module').then( m => m.GameListPageModule)
+  },
+
 
 ];
 

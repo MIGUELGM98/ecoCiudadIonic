@@ -9,6 +9,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { Keyboard } from "@ionic-native/keyboard/ngx";
+import { Media } from "@ionic-native/media/ngx";
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -16,6 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     StatusBar,
     SplashScreen,
+    Keyboard,
+    Media,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
