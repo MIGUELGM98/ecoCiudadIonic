@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/menu/home"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header> -->
+</ion-header> --> 
 
 <ion-content class="ion-padding">
   <div class="back ion-margin-bottom">
@@ -14,7 +14,23 @@
     <p>Tipos de</p>
     <h1>Botes</h1>
   </div>
-  <ion-card class="bottle" [ngClass]="{'bottle--yellow': content == 1, 'bottle--blue': content == 2, 'bottle--green': content == 3}">
+
+  <ng-container *ngIf="!Can">
+    <ion-skeleton-text animated style="width: 100%; height: 74px;" class="ion-margin-bottom"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 30%; height: 10px; display: inline-block;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 30%; height: 10px; margin-left:16px; display: inline-block;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 100%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 75%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 50%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 25%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 100%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 75%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 50%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 25%;"></ion-skeleton-text>
+  </ng-container>
+
+  <ng-container *ngIf="Can">
+  <ion-card class="bottle animate__animated animate__fadeIn" [ngClass]="{'bottle--yellow': content == 1, 'bottle--blue': content == 2, 'bottle--green': content == 3}">
     <ion-grid>
       <ion-row>
         <ion-col size="2">
@@ -29,7 +45,9 @@
               <ng-container *ngIf="content == 2">Bote Azul</ng-container>
               <ng-container *ngIf="content == 3">Bote Verde</ng-container>
             </h3>
-            <p>Papel y carton</p>
+            <ng-container *ngIf="Can">
+              <p>{{ Can.Descripcion }}</p>
+            </ng-container>
           </div>
         </ion-col>
       </ion-row>
@@ -51,11 +69,15 @@
     <div class="animate__animated animate__fadeIn">
       <div class="information">
         <h1 class="information__h1">Información</h1>
-        <p>En los contenedores amarillos se deben depositar todo tipo de envases y productos fabricados con plásticos como botellas, envases de alimentación o bolsas.</p>
+        <ng-container *ngIf="Can">
+          <p>{{ Can.Informacion }}</p>
+        </ng-container>
       </div>
       <div class="information">
         <h1 class="information__h1">¿Sabias que?</h1>
-        <p>88 latas de refresco es equivalente a una llanta de bicicleta. ¿Que prefieres? ¿Tirar latas y contaminar? ¿O usar tu bicicleta?</p>
+        <ng-container *ngIf="Can">
+          <p>{{ Can.Adicional }}</p>
+        </ng-container>
       </div>
       <ion-card class="bottle--do ion-margin-top">
         <ion-grid>
@@ -68,7 +90,9 @@
             <ion-col size="10">
               <div class="bottle__description">
                 <h3>Deposita</h3>
-                <p>Botellas y envases de plástico, envases metálicos, Briks.</p>
+                <ng-container *ngIf="Can">
+                  <p>{{ Can.SI }}</p>
+                </ng-container>
               </div>
             </ion-col>
           </ion-row>
@@ -85,7 +109,9 @@
             <ion-col size="10">
               <div class="bottle__description">
                 <h3>No deposites</h3>
-                <p>Juguetes de plástico, biberonas y chupetes, utensilios de cocina, cubos de plástico.</p>
+                <ng-container *ngIf="Can">
+                  <p>{{ Can.NO }}</p>
+                </ng-container>
               </div>
             </ion-col>
           </ion-row>
@@ -101,21 +127,25 @@
     </div>
     <ion-grid>
       <ion-row>
-        <ion-col size="6" class="extra">
-          <ion-card class="extra__slides__product" routerLink="/product">
-            <div class="extra__slides__product__circle yellow">
+        <ion-col size="6" class="extra" *ngFor="let i of Category">
+          <ion-card class="extra__slides__product" [routerLink]="['/product/', i.id]">
+            <div class="extra__slides__product__circle" [ngClass]="{
+              'yellow': i.Bote == 1,
+              'blue': i.Bote == 2,
+              'green': i.Bote == 3
+            }">
               <span><i class="fas fa-recycle"></i></span>
             </div>
             <div class="extra__slides__product__img">
-              <img src="../../../assets/img/popote.png" alt="">
+              <img src="{{url}}/items/{{i.Img}}" alt="">
             </div>
             <div class="extra__slides__product__subtitle">
-              <p>Plastico</p>
-              <h2>Popote</h2>
+              <p>{{ i.Tipo }}</p>
+              <h2>{{ i.Producto }}</h2>
             </div>
           </ion-card>
         </ion-col>
-        <ion-col size="6" class="extra">
+        <!-- <ion-col size="6" class="extra">
           <ion-card class="extra__slides__product" routerLink="/product">
             <div class="extra__slides__product__circle yellow">
               <span><i class="fas fa-recycle"></i></span>
@@ -143,9 +173,10 @@
             </div>
           </ion-card>
         </ion-col>
-        
+         -->
       </ion-row>
     </ion-grid>
   </div>
   </ng-container>
+</ng-container>
 </ion-content>
