@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'slash', 
     pathMatch: 'full'
   },
   {
@@ -39,6 +39,19 @@ const routes: Routes = [
     path: 'report',
     loadChildren: () => import('./system/report/report.module').then( m => m.ReportPageModule),
   },
+   {
+    path: 'slash',
+    loadChildren: () => import('./system/slash/slash.module').then( m => m.SlashPageModule)
+  },   {
+    path: 'games',
+    loadChildren: () => import('./system/games/games.module').then( m => m.GamesPageModule)
+  },
+  {
+    path: 'game-list',
+    loadChildren: () => import('./system/game-list/game-list.module').then( m => m.GameListPageModule)
+  },
+
+
 ];
 
 @NgModule({

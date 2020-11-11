@@ -1,0 +1,20 @@
+ion-slides {
+    height: 100%;
+  }
+
+  .slash{   
+    &__bottom{
+        height: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+        a{
+            font-size: 16px;
+            margin-top: 16px;
+            color: rgb(197, 61, 145);
+            
+        }
+    }
+}
