@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-   firebaseConfig : {
+  firebaseConfig : {
     apiKey: "AIzaSyDXhXb0uXxO6EgaLO6ffpUez0w_6nRqD3Y",
     authDomain: "ecociudad-bc7e9.firebaseapp.com",
-    databaseURL: "https://ecociudad-bc7e9.firebaseio.com",
+    databaseURL: "https://ecociudad-bc7e9.firebaseio.com/",
     projectId: "ecociudad-bc7e9",
     storageBucket: "ecociudad-bc7e9.appspot.com",
     messagingSenderId: "1090174970570",
