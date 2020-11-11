@@ -48,6 +48,7 @@ export class AppComponent {
   }
 
   logout(){
+
     this.Utils_.presentLoading();
     setTimeout(() => {
       this.afAuth.signOut();
