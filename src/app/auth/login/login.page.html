@@ -1,11 +1,13 @@
-<ion-content class="ion-padding" mode="ios">
+<ion-content mode="ios">
+  <img class="fixed" src="../../../assets/img/top.png" alt="">
   <div class="login">
     <div class="login__top">
       <img src="../../../assets/img/logo.png" alt="">
     </div>
-    <div class="login__bottom">
+    <div class="login__bottom ion-padding-horizontal">
       <button (click)="navigate()">
-        Iniciar sesión
+        <ion-icon name="logo-facebook"></ion-icon>
+        Iniciar sesión con facebook
       </button>
       <a  (click)="navigate()">Iniciar sesión sin registrarme</a>
       <!-- <ion-button color="primary" expand="block" (click)="navigate()">Login</ion-button> -->

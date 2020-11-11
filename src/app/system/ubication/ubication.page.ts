@@ -14,10 +14,11 @@ import { Utils } from 'src/app/utils/ionic.utils';
   styleUrls: ['./ubication.page.scss'],
   providers: [ Geolocation ]
 })
-export class UbicationPage implements OnInit {
+export class UbicationPage{
 
   //Models
   public Marker: Array<Marker>;
+  public Zone: Array<Marker>;
 
   //Map
   public map: Map;
@@ -32,17 +33,17 @@ export class UbicationPage implements OnInit {
   private icon: Icons;
   private red: any;
   private orange: any;
-  private utils_: Utils
 
   constructor(
-    private geolocation: Geolocation,
     public popOverCtrl: PopoverController,
     public navCtrl: NavController,
     private _markerService: MarkerService,
   ) {
     this.Marker = new Array<Marker>();
-    this.utils_ = new Utils(new LoadingController, null);
+    this.Zone = new Array<Marker>();
     this.icon = new Icons();
+
+
     this.lat = 22.7433;
     this.lon =  -98.9747;
     this.name = 'Alejandro Filiberto';
@@ -62,12 +63,10 @@ export class UbicationPage implements OnInit {
     }
   }
 
-  ngOnInit() {
-
-  }
-
   ionViewDidEnter(){
+
     if(!this.map){
+      
       this.loadMap();
 
       this._markerService.getAll().subscribe(
@@ -75,8 +74,15 @@ export class UbicationPage implements OnInit {
           this.Marker = res;
           this.markers();
         }
-      ).add(() => {
-      });
+      );
+
+      this._markerService.getZone().subscribe(
+        res => {
+          this.Zone = res;
+          this.circles();
+          console.log(this.Zone);
+        }
+      )
 
     }
   }
@@ -84,10 +90,12 @@ export class UbicationPage implements OnInit {
   loadMap(): void{
 
     //Map Configuration
-    this.map = new Map('map').setView([this.lat, this.lon], 14.5);
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    let attr = {
       attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-    }).addTo(this.map); // This line is added to add the Tile Layer to our map
+    }
+
+    this.map = new Map('map').setView([this.lat, this.lon], 14.5);
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attr).addTo(this.map);
 
   }
 
@@ -113,29 +121,17 @@ export class UbicationPage implements OnInit {
 
   circles(){
     
-    //Danger
-    marker([22.7352116, -98.9724365], {
-      icon: this.icon.dangerIcon
-    }).bindPopup('<p class="ion-no-margin">Zona en contaminación</p>').addTo(this.map);
-    marker([22.764706, -98.972423], {
-      icon: this.icon.dangerIcon
-    }).bindPopup('<p class="ion-no-margin">Zona en contaminación</p>').addTo(this.map);
+    this.Zone.filter(res => {
 
-    //Medium
-    marker([22.748797, -98.964935], {
-      icon: this.icon.dangerMediumIcon
-    }).bindPopup('<p class="ion-no-margin">Zona en peligro de contaminación</p>').addTo(this.map);
-    marker([22.746581, -98.987797], {
-      icon: this.icon.dangerMediumIcon
-    }).bindPopup('<p class="ion-no-margin">Zona en peligro de contaminación</p>').addTo(this.map);
+      let name: string;
+      let color = res.id_zona == 2 ? this.red : this.orange; 
+      let data: any = { icon: res.id_zona === 2 ? this.icon.dangerIcon : this.icon.dangerMediumIcon };
 
-    //RED
-    circle([22.7352116, -98.9724365], this.red).addTo(this.map);
-    circle([22.764706, -98.972423], this.red).addTo(this.map);
+      name = `<p class="ion-no-margin">${res.nombre}</p>`;
 
-    //Orange
-    circle([22.748797, -98.964935], this.orange).addTo(this.map);
-    circle([22.746581, -98.987797], this.orange).addTo(this.map);
+      marker([res.lat, res.lng], data).bindPopup(name).addTo(this.map);
+      circle([res.lat, res.lng], color).addTo(this.map);
+    });
   }
 
   move(){

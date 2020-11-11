@@ -16,4 +16,8 @@ export class MarkerService {
   getAll():Observable<Marker[]>{
     return this._http.get<Marker[]>(`${AppSettings.API_ENDPOINT}/marker`);
   }
+
+  getZone():Observable<Marker[]>{
+    return this._http.get<Marker[]>(`${AppSettings.API_ENDPOINT}/marker/zone`);
+  }
 }

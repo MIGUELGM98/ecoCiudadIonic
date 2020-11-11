@@ -21,7 +21,7 @@ export class GameComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.initApp(0);
+    delete this.initApp;
   }
 
   dismissModal(){
