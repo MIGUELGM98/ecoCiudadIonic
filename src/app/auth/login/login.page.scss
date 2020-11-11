@@ -1,3 +1,8 @@
+.fixed{
+    position: fixed;
+    top: 0;
+}
+
 .login{
     height: 100vh;
     &__top{
@@ -21,11 +26,18 @@
             padding: 16px;
             color: #FFF;
             background-color: var(--ion-color-secondary);
-            font-size: 15px;
+            font-size: 12px;
         }
         a{
+            color: var(--ion-color-secondary);
             font-size: 12px;
             margin-top: 16px;
         }
     }
+}
+ion-icon{
+    color: #FFF;
+    margin-right: 8px;
+    font-size: 14px;
+    vertical-align: middle;
 }

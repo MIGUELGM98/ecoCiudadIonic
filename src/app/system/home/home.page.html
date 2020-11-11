@@ -7,53 +7,24 @@
   <div class="reciclate">
     <h1 class="reciclate__h1 ion-margin-start ion-margin-top">Reciclar</h1>
     <ion-slides pager="false" [options]="slide">
-      <ion-slide>
-        <ion-card class="reciclate__card" routerLink="/product">
+
+      <ion-slide *ngFor="let i of Types">
+        <ion-card class="reciclate__card animate__animated animate__fadeIn" routerLink="/product/1">
           <div class="reciclate__card__inner">
-            <img src="../../../assets/img/bottle.png" alt="">
+            <img src="{{url}}/icons/{{i.img}}" alt="">
             <div class="reciclate__card__item">
-              Botella
+              {{ i.nombre }}
             </div>
           </div>    
         </ion-card>
       </ion-slide>
-      <ion-slide>
-        <ion-card class="reciclate__card" routerLink="/product">
-          <div class="reciclate__card__inner">
-            <img src="../../../assets/img/can.png" alt="">
-            <div class="reciclate__card__item">
-              Lata
-            </div>
-          </div>   
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="reciclate__card" routerLink="/product">
-          <div class="reciclate__card__inner">
-            <img src="../../../assets/img/carton.png" alt="">
-            <div class="reciclate__card__item">
-              Cartón
-            </div>
-          </div>   </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="reciclate__card" routerLink="/product">
-          <div class="reciclate__card__inner">
-            <img src="../../../assets/img/papel.png" alt="">
-            <div class="reciclate__card__item">
-              Papel
-            </div>
-          </div>   </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="reciclate__card" routerLink="/product">
-          <div class="reciclate__card__inner">
-            <img src="../../../assets/img/tapa.png" alt="">
-            <div class="reciclate__card__item">
-              Taparrosca
-            </div>
-          </div>   </ion-card>
-      </ion-slide>
+     
+      <ng-container *ngIf="Types.length == 0">
+        <ion-slide *ngFor="let i of [1,1,1]">
+          <ion-skeleton-text style="width: 75px" animated></ion-skeleton-text>
+        </ion-slide>
+      </ng-container>
+
     </ion-slides>
   </div>
   <div class="alert ion-padding-horizontal ion-margin-vertical">
@@ -117,70 +88,39 @@
             <p>Bote</p>
             <p>Verde</p>
           </div>
-        </ion-card>
+        </ion-card> 
       </ion-slide>
     </ion-slides>
   </div>
   <div class="extra ion-margin-top">
     <h1 class="extra__h1 ion-margin-start ion-margin-top">Común</h1>
     <ion-slides pager="false" class="extra__slides" [options]="slide">
-      <ion-slide>
-        <ion-card class="extra__slides__product" routerLink="/product">
-          <div class="extra__slides__product__circle yellow">
+
+      <ion-slide *ngFor="let i of Products">
+        <ion-card class="extra__slides__product animate__animated animate__fadeIn" [routerLink]="['/product/', i.id]">
+          <div class="extra__slides__product__circle"
+              [ngClass]="{
+                  'yellow': i.Bote === 'Amarillo',
+                  'blue': i.Bote === 'Azul',
+                  'green': i.Bote === 'Verde'
+                }">
             <span><i class="fas fa-recycle"></i></span>
           </div>
           <div class="extra__slides__product__img">
-            <img src="../../../assets/img/botella.png" alt="">
+            <img src="{{url}}/items/{{i.Img}}" alt="">
           </div>
           <div class="extra__slides__product__subtitle">
-            <p>Plastico</p>
-            <h2>Botella</h2>
+            <p>{{ i.Tipo }}</p>
+            <h2>{{ i.Producto }}</h2>
           </div>
         </ion-card>
       </ion-slide>
-      <ion-slide>
-        <ion-card class="extra__slides__product" routerLink="/product">
-          <div class="extra__slides__product__circle blue">
-            <span><i class="fas fa-recycle"></i></span>
-          </div>
-          <div class="extra__slides__product__img">
-            <img src="../../../assets/img/caja.png" alt="">
-          </div>
-          <div class="extra__slides__product__subtitle">
-            <p>Carton</p>
-            <h2>Caja</h2>
-          </div>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="extra__slides__product" routerLink="/product">
-          <div class="extra__slides__product__circle green">
-            <span><i class="fas fa-recycle"></i></span>
-          </div>
-          <div class="extra__slides__product__img">
-            <img src="../../../assets/img/cocavidrio.png" alt="">
-          </div>
-          <div class="extra__slides__product__subtitle">
-            <p>Vidrio</p>
-            <h2>Envase</h2>
-          </div>
-        </ion-card>
-      </ion-slide>
-<!--        
-        <ion-slide>
-        <ion-card class="extra__slides__product" routerLink="/product">
-          <div class="extra__slides__product__circle">
-            <span><i class="fas fa-recycle"></i></span>
-          </div>
-          <div class="extra__slides__product__img">
-            <img src="../../../assets/img/coca.png" alt="">
-          </div>
-          <div class="extra__slides__product__subtitle">
-            <p>Aluminio</p>
-            <h2>Lata</h2>
-          </div>
-        </ion-card>
-      </ion-slide> -->
+
+      <ng-container *ngIf="Types.length == 0">
+        <ion-slide *ngFor="let i of [1,1]">
+          <ion-skeleton-text style="width:118px; height:153px" animated></ion-skeleton-text>
+        </ion-slide>
+      </ng-container>
     </ion-slides>
   </div>
 </ion-content>

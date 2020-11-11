@@ -1,7 +1,12 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>ecoFlappy</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <button class="back" (click)="juegos()">
-    <ion-icon name="close-outline"></ion-icon>
-  </button>
   <div id="gamecontainer">
     <div id="gamescreen">
       <div id="sky" class="animated">
@@ -34,4 +39,3 @@
   <div class="boundingbox" id="playerbox"></div>
   <div class="boundingbox" id="pipebox"></div>
 </ion-footer>
-

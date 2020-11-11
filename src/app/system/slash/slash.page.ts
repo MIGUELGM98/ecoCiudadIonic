@@ -6,18 +6,20 @@ import {  NavController } from '@ionic/angular';
   templateUrl: './slash.page.html',
   styleUrls: ['./slash.page.scss'],
 })
-export class SlashPage implements OnInit {
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400
-  };
-  constructor(public navCtrl:NavController) { }
+export class SlashPage {
 
-  ngOnInit() {
+  public slideOpts: {};
+
+  constructor(
+    public navCtrl:NavController
+  ) {
+    this.slideOpts = {
+      initialSlide: 0,
+      speed: 400
+    }
   }
-  
 
-  irALogin(){
+  finish(){
     this.navCtrl.navigateRoot('/login', {animated: true});
   }
 

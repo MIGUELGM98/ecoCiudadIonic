@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Map, tileLayer, Marker, marker, circle } from 'leaflet';
+import { Map, tileLayer, marker, circle } from 'leaflet';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Icons } from 'src/app/utils/icon.utils';
-import { NavController, PopoverController } from '@ionic/angular';
+import { LoadingController, NavController, PopoverController } from '@ionic/angular';
 import { InformationComponent } from 'src/app/components/information/information.component';
+import { MarkerService } from 'src/app/services/marker.service';
+import { Marker } from 'src/app/models/Marker.model';
+import { Utils } from 'src/app/utils/ionic.utils';
 
 @Component({
   selector: 'app-ubication',
@@ -11,7 +14,11 @@ import { InformationComponent } from 'src/app/components/information/information
   styleUrls: ['./ubication.page.scss'],
   providers: [ Geolocation ]
 })
-export class UbicationPage implements OnInit {
+export class UbicationPage{
+
+  //Models
+  public Marker: Array<Marker>;
+  public Zone: Array<Marker>;
 
   //Map
   public map: Map;
@@ -28,14 +35,19 @@ export class UbicationPage implements OnInit {
   private orange: any;
 
   constructor(
-    private geolocation: Geolocation,
     public popOverCtrl: PopoverController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private _markerService: MarkerService,
   ) {
+    this.Marker = new Array<Marker>();
+    this.Zone = new Array<Marker>();
     this.icon = new Icons();
+
+
     this.lat = 22.7433;
     this.lon =  -98.9747;
     this.name = 'Alejandro Filiberto';
+
     this.red = {
       color: 'red',
       fillColor: '#f03',
@@ -51,81 +63,75 @@ export class UbicationPage implements OnInit {
     }
   }
 
-  ngOnInit() {}
-
   ionViewDidEnter(){
+
     if(!this.map){
+      
       this.loadMap();
+
+      this._markerService.getAll().subscribe(
+        res => {
+          this.Marker = res;
+          this.markers();
+        }
+      );
+
+      this._markerService.getZone().subscribe(
+        res => {
+          this.Zone = res;
+          this.circles();
+          console.log(this.Zone);
+        }
+      )
+
     }
   }
 
   loadMap(): void{
-    this.map = new Map('map').setView([this.lat, this.lon], 14.5);
 
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //Map Configuration
+    let attr = {
       attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-    }).addTo(this.map); // This line is added to add the Tile Layer to our map
+    }
 
-    this.markers();
-    this.circles();
+    this.map = new Map('map').setView([this.lat, this.lon], 14.5);
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attr).addTo(this.map);
+
   }
 
   markers(){
+
     this.marker = marker([this.lat, this.lon]).addTo(this.map);
+    this.Marker.filter(res => {
 
-    //Green
-    marker([22.7537333, -98.9662367], {
-      icon: this.icon.greenIcon
-    }).bindPopup('<p class="ion-no-margin">FMODZ</p>').addTo(this.map);
-    marker([22.738744, -98.965539], {
-      icon: this.icon.greenIcon
-    }).bindPopup('<p class="ion-no-margin">FMODZ</p>').addTo(this.map);
+      let popUp = `<p class="ion-no-margin">${res.nombre}</p>`;
+      let icon = { icon: null };
 
-    //Yellow
-    marker([22.74588, -98.9713898], {
-      icon: this.icon.yellowIcon
-    }).bindPopup('<p class="ion-no-margin">Papeleria El Contador</p>').addTo(this.map);
-    marker([22.733678, -98.968715], {
-      icon: this.icon.yellowIcon
-    }).bindPopup('<p class="ion-no-margin">Papeleria El Contador</p>').addTo(this.map);
+      if(res.id_bote == 1){
+        icon.icon = this.icon.yellowIcon
+      }else if(res.id_bote == 2){
+        icon.icon = this.icon.blueIcon
+      }else{
+        icon.icon = this.icon.greenIcon
+      }
 
-    //Blue
-    marker([22.7405766,-98.9709651], {
-      icon: this.icon.blueIcon
-    }).bindPopup('<p class="ion-no-margin">Gorditas Moya</p>').addTo(this.map);
-    marker([22.752319, -98.973799], {
-      icon: this.icon.blueIcon
-    }).bindPopup('<p class="ion-no-margin">Gorditas Moya</p>').addTo(this.map);
-
-    //Danger
-    marker([22.7352116, -98.9724365], {
-      icon: this.icon.dangerIcon
-    }).bindPopup('<p class="ion-no-margin">Zona en contaminación</p>').addTo(this.map);
-    marker([22.764706, -98.972423], {
-      icon: this.icon.dangerIcon
-    }).bindPopup('<p class="ion-no-margin">Zona en contaminación</p>').addTo(this.map);
-
-    //Medium
-    marker([22.748797, -98.964935], {
-      icon: this.icon.dangerMediumIcon
-    }).bindPopup('<p class="ion-no-margin">Zona en peligro de contaminación</p>').addTo(this.map);
-    marker([22.746581, -98.987797], {
-      icon: this.icon.dangerMediumIcon
-    }).bindPopup('<p class="ion-no-margin">Zona en peligro de contaminación</p>').addTo(this.map);
+      marker([res.lat, res.lng], icon).bindPopup(popUp).addTo(this.map);
+    });
   }
 
   circles(){
-    //RED
-    circle([22.7352116, -98.9724365], this.red).addTo(this.map);
-    circle([22.764706, -98.972423], this.red).addTo(this.map);
+    
+    this.Zone.filter(res => {
 
-    //Orange
-    circle([22.748797, -98.964935], this.orange).addTo(this.map);
-    circle([22.746581, -98.987797], this.orange).addTo(this.map);
-  }
+      let name: string;
+      let color = res.id_zona == 2 ? this.red : this.orange; 
+      let data: any = { icon: res.id_zona === 2 ? this.icon.dangerIcon : this.icon.dangerMediumIcon };
 
-  button(){
-    console.log("Test");
+      name = `<p class="ion-no-margin">${res.nombre}</p>`;
+
+      marker([res.lat, res.lng], data).bindPopup(name).addTo(this.map);
+      circle([res.lat, res.lng], color).addTo(this.map);
+    });
   }
 
   move(){

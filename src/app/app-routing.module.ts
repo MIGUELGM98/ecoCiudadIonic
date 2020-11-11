@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./system/bottle/bottle.module').then( m => m.BottlePageModule)
   },
   {
-    path: 'product',
+    path: 'product/:id',
     loadChildren: () => import('./system/product/product.module').then( m => m.ProductPageModule)
   },
   {

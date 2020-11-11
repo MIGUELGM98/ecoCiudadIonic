@@ -4,20 +4,38 @@
       <ion-back-button defaultHref="/menu/home"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header> -->
+</ion-header> --> 
 
 <ion-content class="ion-padding">
   <div class="back ion-margin-bottom">
-    <button class="back__button" (click)="navCtrl.back()">
+    <button class="back__button ion-margin-bottom" (click)="navCtrl.back()">
       <ion-icon name="chevron-back"></ion-icon>
     </button>
+    <p>Tipos de</p>
+    <h1>Botes</h1>
   </div>
-  <ion-card class="bottle" [ngClass]="{'bottle--yellow': content == 1, 'bottle--blue': content == 2, 'bottle--green': content == 3}">
+
+  <ng-container *ngIf="!Can">
+    <ion-skeleton-text animated style="width: 100%; height: 74px;" class="ion-margin-bottom"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 30%; height: 10px; display: inline-block;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 30%; height: 10px; margin-left:16px; display: inline-block;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 100%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 75%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 50%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 25%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 100%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 75%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 50%;"></ion-skeleton-text>
+    <ion-skeleton-text class="ion-margin-top" animated style="width: 25%;"></ion-skeleton-text>
+  </ng-container>
+
+  <ng-container *ngIf="Can">
+  <ion-card class="bottle animate__animated animate__fadeIn" [ngClass]="{'bottle--yellow': content == 1, 'bottle--blue': content == 2, 'bottle--green': content == 3}">
     <ion-grid>
       <ion-row>
         <ion-col size="2">
           <div class="bottle__icon"  [ngClass]="{'bottle__icon--yellow': content == 1, 'bottle__icon--blue': content == 2, 'bottle__icon--green': content == 3}">
-            <ion-icon name="wine-outline"></ion-icon>
+            <ion-icon name="trash"></ion-icon>
           </div>
         </ion-col>
         <ion-col size="10">
@@ -27,7 +45,9 @@
               <ng-container *ngIf="content == 2">Bote Azul</ng-container>
               <ng-container *ngIf="content == 3">Bote Verde</ng-container>
             </h3>
-            <p>Papel y carton</p>
+            <ng-container *ngIf="Can">
+              <p>{{ Can.Descripcion }}</p>
+            </ng-container>
           </div>
         </ion-col>
       </ion-row>
@@ -49,24 +69,30 @@
     <div class="animate__animated animate__fadeIn">
       <div class="information">
         <h1 class="information__h1">Información</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ipsam neque est temporibus consectetur distinctio veniam</p>
+        <ng-container *ngIf="Can">
+          <p>{{ Can.Informacion }}</p>
+        </ng-container>
       </div>
       <div class="information">
         <h1 class="information__h1">¿Sabias que?</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, aliquid, magnam perferendis totam, itaque hic fugit quae ratione temporibus adipisci eaque accusamus eos quisquam eveniet animi odit. Commodi, voluptates velit.</p>
+        <ng-container *ngIf="Can">
+          <p>{{ Can.Adicional }}</p>
+        </ng-container>
       </div>
       <ion-card class="bottle--do ion-margin-top">
         <ion-grid>
           <ion-row>
             <ion-col size="2">
               <div class="bottle__icon">
-                <ion-icon name="wine-outline"></ion-icon>
+                <ion-icon name="checkmark-outline"></ion-icon>
               </div>
             </ion-col>
             <ion-col size="10">
               <div class="bottle__description">
                 <h3>Deposita</h3>
-                <p>sit amet</p>
+                <ng-container *ngIf="Can">
+                  <p>{{ Can.SI }}</p>
+                </ng-container>
               </div>
             </ion-col>
           </ion-row>
@@ -77,13 +103,15 @@
           <ion-row>
             <ion-col size="2">
               <div class="bottle__icon">
-                <ion-icon name="wine-outline"></ion-icon>
+                <ion-icon name="close-outline"></ion-icon>
               </div>
             </ion-col>
             <ion-col size="10">
               <div class="bottle__description">
                 <h3>No deposites</h3>
-                <p>sit amet</p>
+                <ng-container *ngIf="Can">
+                  <p>{{ Can.NO }}</p>
+                </ng-container>
               </div>
             </ion-col>
           </ion-row>
@@ -99,21 +127,25 @@
     </div>
     <ion-grid>
       <ion-row>
-        <ion-col size="6" class="extra">
-          <ion-card class="extra__slides__product" routerLink="/product">
-            <div class="extra__slides__product__circle yellow">
+        <ion-col size="6" class="extra" *ngFor="let i of Category">
+          <ion-card class="extra__slides__product" [routerLink]="['/product/', i.id]">
+            <div class="extra__slides__product__circle" [ngClass]="{
+              'yellow': i.Bote == 1,
+              'blue': i.Bote == 2,
+              'green': i.Bote == 3
+            }">
               <span><i class="fas fa-recycle"></i></span>
             </div>
             <div class="extra__slides__product__img">
-              <img src="../../../assets/img/popote.png" alt="">
+              <img src="{{url}}/items/{{i.Img}}" alt="">
             </div>
             <div class="extra__slides__product__subtitle">
-              <p>Plastico</p>
-              <h2>Popote</h2>
+              <p>{{ i.Tipo }}</p>
+              <h2>{{ i.Producto }}</h2>
             </div>
           </ion-card>
         </ion-col>
-        <ion-col size="6" class="extra">
+        <!-- <ion-col size="6" class="extra">
           <ion-card class="extra__slides__product" routerLink="/product">
             <div class="extra__slides__product__circle yellow">
               <span><i class="fas fa-recycle"></i></span>
@@ -141,9 +173,10 @@
             </div>
           </ion-card>
         </ion-col>
-        
+         -->
       </ion-row>
     </ion-grid>
   </div>
   </ng-container>
+</ng-container>
 </ion-content>

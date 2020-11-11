@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+import { Utils } from 'src/app/utils/ionic.utils';
 
 @Component({
   selector: 'app-game-list',
@@ -8,11 +9,20 @@ import { NavController } from '@ionic/angular';
 })
 export class GameListPage implements OnInit {
 
-  constructor(public navCtrl:NavController) { }
+  public Util: Utils;
+
+  constructor(
+    private navCtrl: NavController,
+    private modalCtrl: ModalController
+  ) {
+    this.Util = new Utils(undefined, undefined, this.modalCtrl);
+  }
 
   ngOnInit() {
   }
 
+  openGame(){
+    this.Util.presentModal();
+  }
 
- 
 }

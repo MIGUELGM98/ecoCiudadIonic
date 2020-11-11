@@ -549,6 +549,6 @@ export class GamesPage{
     }
   }
   juegos(){
-    this.navCtrl.back();
+    this.navCtrl.pop();
   }
 }
