@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
-import { MenuController, NavController, Platform } from '@ionic/angular';
+import { LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
-import  firebase  from 'firebase/app';
 import { AuthService } from './auth/auth.service';
+import { Utils } from './utils/ionic.utils';
 
 
 @Component({
@@ -14,9 +14,12 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
   nombre:string;
   gmail:string;
   urlphoto:string;
+  private Utils_: Utils;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -26,8 +29,8 @@ export class AppComponent {
     public afAuth:AngularFireAuth,
     public authService:AuthService
   ) {
+    this.Utils_ = new Utils(new LoadingController, null, null);
     this.initializeApp();
-
     this.getData();
   }
 
@@ -45,11 +48,14 @@ export class AppComponent {
   }
 
   logout(){
+    this.Utils_.presentLoading();
+    setTimeout(() => {
       this.afAuth.signOut();
-      this.navCtrl.navigateRoot('/login', {animated: true})
-      this.nombre='';
-      this.gmail='';
-
+      this.navCtrl.navigateRoot('/login', {animated: true});
+      this.Utils_.stopLoading();
+    }, 1000);
+      // this.nombre='';
+      // this.gmail='';
   }
 
   getData(){

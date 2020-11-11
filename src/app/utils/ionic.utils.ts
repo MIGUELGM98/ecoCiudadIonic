@@ -11,7 +11,7 @@ export class Utils{
         public modalCtrl?: ModalController
     ){
         if(loadingCtrl){
-            this.loading = loadingCtrl.create({});
+            this.loading = loadingCtrl.create({}); 
         }
     }
 
@@ -28,12 +28,16 @@ export class Utils{
         this.loading.present();
     }
 
-    async presentToast(){
+    async presentToast(color?, message?){
+        let data = {
+            color: !color ? 'success' : color,
+            message: !message ? 'Reporte recibido correctamente': message
+        }
         const toast = await this.toastCtrl.create({
-            'color': 'success',
+            'color': data.color,
             position: 'top',
             duration: 2000,
-            'message': 'Reporte recibido correctamente'
+            'message': data.message
         });
         toast.present();
     }
