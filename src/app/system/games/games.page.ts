@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 
-import { NavController, Platform } from "@ionic/angular";
+import { ModalController, NavController, Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { Keyboard } from "@ionic-native/keyboard/ngx";
@@ -21,7 +21,8 @@ export class GamesPage{
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private keyboard: Keyboard,
-    public navCtrl:NavController
+    public navCtrl:NavController,
+    private modalCtrl: ModalController,
   ) {
     this.initializeApp();
    }
@@ -548,7 +549,13 @@ export class GamesPage{
       pipes.push(newpipe);
     }
   }
+
+  ngOnDestroy(){
+    
+    this.juegos();
+  }
+  
   juegos(){
-    this.navCtrl.pop();
+    this.navCtrl.back();
   }
 }

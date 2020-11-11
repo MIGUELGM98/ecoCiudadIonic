@@ -26,7 +26,8 @@ import { environment } from 'src/environments/environment';
     IonicModule.forRoot({mode: 'ios'}),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule],
+    AngularFireAuthModule,
+    HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,

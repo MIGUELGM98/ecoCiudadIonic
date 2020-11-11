@@ -45,10 +45,11 @@ export class AppComponent {
   }
 
   logout(){
-      this.afAuth.signOut();
+      this.afAuth.signOut(); 
       this.navCtrl.navigateRoot('/login', {animated: true})
       this.nombre='';
       this.gmail='';
+      this.urlphoto='';
 
   }
 
