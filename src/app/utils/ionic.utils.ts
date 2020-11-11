@@ -1,4 +1,5 @@
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { GameComponent } from '../components/game/game.component';
 
 export class Utils{
 
@@ -6,9 +7,20 @@ export class Utils{
 
     constructor(
         public loadingCtrl: LoadingController,
-        public toastCtrl: ToastController
+        public toastCtrl: ToastController,
+        public modalCtrl?: ModalController
     ){
-        this.loading = loadingCtrl.create({});
+        if(loadingCtrl){
+            this.loading = loadingCtrl.create({});
+        }
+    }
+
+    async presentModal(){
+        const modal = await this.modalCtrl.create({
+            component: GameComponent
+        });
+
+        modal.present();
     }
 
     async presentLoading(){

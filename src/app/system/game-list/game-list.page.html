@@ -1,20 +1,33 @@
 <ion-header>
-  
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
 </ion-header>
+<ion-content class="ion-padding">
 
-<ion-content >
-<h3>w</h3>
-<ion-card>
-  <ion-card-header>
-    <img src="../../../assets/game//ecoFlappy.png" alt="">
-    <ion-card-subtitle>Diviertete</ion-card-subtitle>
-    <ion-card-title>ecoFlappy</ion-card-title>
-  </ion-card-header>
+  <h1 class="reciclate__h1 ion-margin-top">Juegos</h1>
 
-  <ion-card-content>
-    Obten tu mejor puntuacion en este divertido juego
-  </ion-card-content>
-  <a routerLink="/games">Play</a>
-</ion-card>
-
+  <ion-card class="ion-margin-top bottle animate__animated animate__fadeIn" (click)="openGame()">
+    <img class="bottle__thumb" src="../../../assets/img/cover.jpg" alt="">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <div class="bottle__logo">
+              <span></span>
+              <img src="../../../assets/img/game.png" alt="">
+          </div>
+        </ion-col> 
+        <ion-col size="9">
+          <div class="bottle__description">
+            <h3>
+              ecoFlappy
+            </h3>
+            <p>
+              Obten tu mejor puntuación en este divertido juego.
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>
