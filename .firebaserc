@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ecociudad-bc7e9": {
+      "hosting": {
+        "app": [
+          "ecociudad-bc7e9"
+        ]
+      }
+    }
+  }
+}

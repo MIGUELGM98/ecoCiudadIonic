@@ -13,11 +13,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { Keyboard } from "@ionic-native/keyboard/ngx";
 import { Media } from "@ionic-native/media/ngx";
 
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFireModule} from "@angular/fire"
+import { environment } from 'src/environments/environment';
+
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot({mode: 'ios'}), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, 
+    IonicModule.forRoot({mode: 'ios'}),
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule],
   providers: [
     StatusBar,
     SplashScreen,
