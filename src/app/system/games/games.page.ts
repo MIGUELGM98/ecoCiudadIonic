@@ -553,7 +553,7 @@ export class GamesPage{
   ngOnDestroy(){
     
     this.juegos();
-  }
+  } 
   
   juegos(){
     this.navCtrl.back();
