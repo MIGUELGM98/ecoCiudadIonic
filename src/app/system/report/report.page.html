@@ -6,19 +6,27 @@
     <p class="top">Generar</p>
     <h1>Reporte</h1>
   </div>
-  <ion-list class="ion-no-padding">
-    <ion-item lines="full" routerLink="map">
+    <ion-list class="ion-no-padding">
+    <ion-item lines="full" (click)="openModal()">
       <ion-label>
         Ubicación
       </ion-label>
+      <ng-container *ngIf="!show">
+        <ion-note slot="end" color="danger">No seleccionada</ion-note>
+      </ng-container>
+      <ng-container *ngIf="show">
+        <ion-note slot="end" color="success">Seleccionada</ion-note>
+      </ng-container>
     </ion-item>
     <ion-item lines="full">
-      <ion-label>Tipo</ion-label>
-      <ion-select placeholder="Selecciona">
-        <ion-select-option value="f">Fuga de agua</ion-select-option>
-        <ion-select-option value="m">Contaminación</ion-select-option>
-        <ion-select-option value="o">Otro</ion-select-option>
-      </ion-select>
+      <ion-label position="floating">Tipo</ion-label>
+      <ng-container [formGroup]="form">
+        <ion-select formControlName="tipo_id" [disabled]="!show" placeholder="Selecciona">
+          <ion-select-option value="1">Fuga de agua</ion-select-option>
+          <ion-select-option value="2">Contaminación</ion-select-option>
+          <ion-select-option value="3">Otro</ion-select-option>
+        </ion-select>
+      </ng-container>
     </ion-item>
     <!-- <ion-item lines="full">
         <ion-label position="floating">Especificar</ion-label>
@@ -26,7 +34,7 @@
     </ion-item> -->
     <ion-item lines="full">
       <ion-label position="floating">Comentarios</ion-label>
-      <ion-input></ion-input>
+      <ion-input [disabled]="!show"></ion-input>
     </ion-item>
   </ion-list>
   <ion-card class="bottle">

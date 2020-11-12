@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ng-container *ngIf="id === 4">
+    <div class="fixed ion-padding">
+      <div class="fixed__content">
+        <p>Arrastra el marcador a la posición del lugar que quieras reportar, y pulsa aceptar</p>
+        <button (click)="acceptModal()">Aceptar</button>
+      </div>
+    </div>
+  </ng-container>
+  <div class="map" id="modal"></div>
+</ion-content>
+
+<!-- Back drop con tutorial -->

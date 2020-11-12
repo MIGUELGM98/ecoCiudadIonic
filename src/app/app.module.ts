@@ -16,6 +16,7 @@ import { Media } from "@ionic-native/media/ngx";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {AngularFireModule} from "@angular/fire"
 import { environment } from 'src/environments/environment';
+import { ComponentsModule } from './components/components.module';
 
 
 
@@ -28,7 +29,8 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ComponentsModule
   ],
   providers: [
     StatusBar,

@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { NavController } from "@ionic/angular";
+import { ModalController, NavController } from "@ionic/angular";
+import { MapComponent } from 'src/app/components/map/map.component';
 import { Ideas, Product } from "src/app/models/Products.model";
 import { ProductService } from "src/app/services/product.service";
+import { Utils } from 'src/app/utils/ionic.utils';
 import { AppSettings } from "../../settings/links.config";
 
 @Component({
@@ -11,18 +13,23 @@ import { AppSettings } from "../../settings/links.config";
   styleUrls: ["./product.page.scss"],
 })
 export class ProductPage implements OnInit {
+
   public informacion: boolean;
   public Ideas: Array<Ideas>;
   public Product: Product;
   public url: any;
   public id: any;
 
+  private Util_: Utils;
+
   constructor(
     private _productService: ProductService,
     private route: ActivatedRoute,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private modalCtrl: ModalController
   ) {
-    this.id = route.snapshot.params.id;
+    this.Util_ = new Utils(null, null, this.modalCtrl);
+    this.id = this.route.snapshot.params.id;
     this.Ideas = new Array<Ideas>();
     this.url = AppSettings.DOMAIN;
     this.informacion = true;
@@ -40,11 +47,15 @@ export class ProductPage implements OnInit {
       this.Ideas = res;
       console.log(this.Ideas);
     });
-  }
+  } 
 
   state(value) {
     console.log(value);
     this.informacion = value === 1 ? true : false;
+  }
+
+  openMap(){
+    this.Util_.presentModal(MapComponent, this.Product.Tipo_id);
   }
 
   openVideo() {

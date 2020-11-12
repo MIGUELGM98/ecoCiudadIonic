@@ -15,12 +15,26 @@ export class Utils{
         }
     }
 
-    async presentModal(){
+    async presentModal(component?, info?, onSuccess?: (result: any) => void){
+
+        let a = {
+            component: component ? component : GameComponent
+        }
+
         const modal = await this.modalCtrl.create({
-            component: GameComponent
+            component: a.component,
+            componentProps: {
+                id: info
+            }
         });
 
-        modal.present();
+        await modal.present();
+
+        const { data } = await modal.onDidDismiss();
+        
+        if(onSuccess){
+            onSuccess(data);
+        }
     }
 
     async presentLoading(){

@@ -10,6 +10,10 @@ input[type="radio"]{
 
 }
 
+.no{
+    box-shadow: none;
+}
+
 @mixin doanddont($first, $second){
     background-color: $first;
     box-shadow: none;
@@ -185,7 +189,7 @@ input[type="radio"]{
             z-index: 999;
         }
     }
-    &__custom{
+    &__custom{ 
         padding: 5px 20px;
         border-radius: 1em;
         margin-right:16px;
@@ -208,7 +212,7 @@ input[type="radio"]{
 }
 
 %size{
-    height: 185px;
+    min-height: 185px;
     display: flex !important;
     align-items: center !important;
     // justify-content: center !important;
@@ -267,7 +271,7 @@ input[type="radio"]{
             &__subtitle{
                 width: 100%;
                 display: block;
-                padding: 16px 0;
+                padding: 16px 0 0 0;
                 position: relative;
                 p{
                     text-align: left;

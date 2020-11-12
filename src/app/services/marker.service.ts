@@ -17,6 +17,10 @@ export class MarkerService {
     return this._http.get<Marker[]>(`${AppSettings.API_ENDPOINT}/marker`);
   }
 
+  getById(id):Observable<Marker[]>{
+    return this._http.get<Marker[]>(`${AppSettings.API_ENDPOINT}/marker/one/${id}`);
+  }
+
   getZone():Observable<Marker[]>{
     return this._http.get<Marker[]>(`${AppSettings.API_ENDPOINT}/marker/zone`);
   }

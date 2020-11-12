@@ -7,6 +7,7 @@ import { InformationComponent } from 'src/app/components/information/information
 import { MarkerService } from 'src/app/services/marker.service';
 import { Marker } from 'src/app/models/Marker.model';
 import { Utils } from 'src/app/utils/ionic.utils';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-ubication',
@@ -16,66 +17,35 @@ import { Utils } from 'src/app/utils/ionic.utils';
 })
 export class UbicationPage{
 
-  //Models
   public Marker: Array<Marker>;
   public Zone: Array<Marker>;
-
-  //Map
   public map: Map;
   public marker: any;
-
-  //Options 
-  public lat: number;
-  public lon: number;
   public name: string;
-
-  //utils
   private icon: Icons;
-  private red: any;
-  private orange: any;
 
   constructor(
+    private _markerService: MarkerService,
+    private _mapService: MapService,
     public popOverCtrl: PopoverController,
     public navCtrl: NavController,
-    private _markerService: MarkerService,
   ) {
     this.Marker = new Array<Marker>();
     this.Zone = new Array<Marker>();
     this.icon = new Icons();
-
-
-    this.lat = 22.7433;
-    this.lon =  -98.9747;
     this.name = 'Alejandro Filiberto';
-
-    this.red = {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.5,
-      radius: 150
-    }
-
-    this.orange = {
-      color: 'orange',
-      fillColor: 'orange',
-      fillOpacity: 0.5,
-      radius: 150
-    }
   }
 
   ionViewDidEnter(){
 
     if(!this.map){
-      
       this.loadMap();
-
       this._markerService.getAll().subscribe(
         res => {
           this.Marker = res;
           this.markers();
         }
       );
-
       this._markerService.getZone().subscribe(
         res => {
           this.Zone = res;
@@ -83,48 +53,31 @@ export class UbicationPage{
           console.log(this.Zone);
         }
       )
-
     }
   }
 
   loadMap(): void{
-
-    //Map Configuration
-    let attr = {
-      attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-    }
-
-    this.map = new Map('map').setView([this.lat, this.lon], 14.5);
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attr).addTo(this.map);
-
-  }
+    this.map = new Map('map').setView([ this._mapService.lat_, this._mapService.lon_ ], 14.5);
+    tileLayer(this._mapService.theme_).addTo(this.map);
+  } 
 
   markers(){
-
-    this.marker = marker([this.lat, this.lon]).addTo(this.map);
+    this.marker = marker([this._mapService.lat_, this._mapService.lon_]).addTo(this.map);
     this.Marker.filter(res => {
 
-      let popUp = `<p class="ion-no-margin">${res.nombre}</p>`;
-      let icon = { icon: null };
-
-      if(res.id_bote == 1){
-        icon.icon = this.icon.yellowIcon
-      }else if(res.id_bote == 2){
-        icon.icon = this.icon.blueIcon
-      }else{
-        icon.icon = this.icon.greenIcon
-      }
+    let popUp = `<p class="ion-no-margin">${res.nombre}</p>`;
+    let icon = {
+      icon: res.id_bote == 1 ? this.icon.yellowIcon : res.id_bote == 2 ? this.icon.blueIcon : this.icon.greenIcon
+    };
 
       marker([res.lat, res.lng], icon).bindPopup(popUp).addTo(this.map);
     });
   }
 
   circles(){
-    
     this.Zone.filter(res => {
-
       let name: string;
-      let color = res.id_zona == 2 ? this.red : this.orange; 
+      let color = res.id_zona == 2 ? this._mapService.red_ : this._mapService.orange_; 
       let data: any = { icon: res.id_zona === 2 ? this.icon.dangerIcon : this.icon.dangerMediumIcon };
 
       name = `<p class="ion-no-margin">${res.nombre}</p>`;
@@ -136,9 +89,9 @@ export class UbicationPage{
 
   move(){
     this.navCtrl.navigateForward('/report');
-    // this.map.remove();
   }
 
+  //Cambiar a utils
   async information(){
     const popover = await this.popOverCtrl.create({
       component: InformationComponent,
