@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {  NavController } from '@ionic/angular';
-import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-slash',
@@ -15,7 +14,7 @@ export class SlashPage implements OnInit {
   constructor(
     public navCtrl: NavController
   ) {
-    this.logged = true;
+    this.logged = false;
     this.slideOpts = {
       initialSlide: 0,
       speed: 400

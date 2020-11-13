@@ -3,13 +3,13 @@
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <div class="reciclate">
+<ion-content> 
+  <!-- <div class="reciclate">
     <h1 class="reciclate__h1 ion-margin-start ion-margin-top">Reciclar</h1>
     <ion-slides pager="false" [options]="slide">
 
       <ion-slide *ngFor="let i of Types">
-        <ion-card class="reciclate__card animate__animated animate__fadeIn" routerLink="/product/1">
+        <ion-card routerLink="/menu/reciclate" class="reciclate__card animate__animated animate__fadeIn">
           <div class="reciclate__card__inner">
             <img src="{{url}}/icons/{{i.img}}" alt="">
             <div class="reciclate__card__item">
@@ -26,7 +26,7 @@
       </ng-container>
 
     </ion-slides>
-  </div>
+  </div> -->
   <div class="alert ion-padding-horizontal ion-margin-vertical">
     <ion-card class="bottle" routerLink="/covid">
       <ion-grid>
@@ -92,6 +92,7 @@
       </ion-slide>
     </ion-slides>
   </div>
+  
   <div class="extra ion-margin-top">
     <h1 class="extra__h1 ion-margin-start ion-margin-top">Común</h1>
     <ion-slides pager="false" class="extra__slides" [options]="slide">

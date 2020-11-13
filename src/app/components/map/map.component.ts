@@ -1,15 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Map, tileLayer, marker, circle} from 'leaflet';
 import { Icons } from 'src/app/utils/icon.utils';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { MapService } from 'src/app/services/map.service';
 import { MarkerService } from 'src/app/services/marker.service';
 import { Marker } from 'src/app/models/Marker.model';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Utils } from 'src/app/utils/ionic.utils';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+  styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
 
@@ -21,6 +23,7 @@ export class MapComponent implements OnInit {
   public marker: any;
 
   private Icons: Icons;
+  private Utils: Utils;
 
   constructor(
     private modalCtrl: ModalController,
@@ -28,6 +31,7 @@ export class MapComponent implements OnInit {
     private _markerService: MarkerService
   ) {
     this.Markers = new Array<Marker>();
+    this.Utils = new Utils(null, new ToastController, null);
     this.Icons = new Icons();
   }
   

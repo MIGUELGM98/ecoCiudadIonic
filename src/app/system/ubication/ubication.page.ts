@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Map, tileLayer, marker, circle } from 'leaflet';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Icons } from 'src/app/utils/icon.utils';
-import { LoadingController, NavController, PopoverController } from '@ionic/angular';
+import { LoadingController, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { InformationComponent } from 'src/app/components/information/information.component';
 import { MarkerService } from 'src/app/services/marker.service';
 import { Marker } from 'src/app/models/Marker.model';
@@ -13,16 +13,18 @@ import { MapService } from 'src/app/services/map.service';
   selector: 'app-ubication',
   templateUrl: './ubication.page.html',
   styleUrls: ['./ubication.page.scss'],
-  providers: [ Geolocation ]
 })
-export class UbicationPage{
+export class UbicationPage implements OnInit{
 
   public Marker: Array<Marker>;
   public Zone: Array<Marker>;
   public map: Map;
   public marker: any;
   public name: string;
+  
+  private Util: Utils;
   private icon: Icons;
+  private location: any;
 
   constructor(
     private _markerService: MarkerService,
@@ -33,7 +35,11 @@ export class UbicationPage{
     this.Marker = new Array<Marker>();
     this.Zone = new Array<Marker>();
     this.icon = new Icons();
-    this.name = 'Alejandro Filiberto';
+    this.Util = new Utils(null, new ToastController, null);
+    this.name = 'Invitado';
+  }
+
+  ngOnInit(){
   }
 
   ionViewDidEnter(){

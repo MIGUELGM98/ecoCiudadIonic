@@ -1,5 +1,5 @@
 <ion-app>
-  <!-- <ion-router-outlet mode="ios"></ion-router-outlet> -->
+  <!-- <ion-router-outlet></ion-router-outlet> -->
   <ion-split-pane contentId="menu-content" when="xs" [disabled]="true" (ionSplitPaneVisible)="onSplitPaneVisible(event)">
     <ion-menu contentId="menu-content" menuId="menu-content" side="end" type="overlay">
       <ion-header >
@@ -11,18 +11,22 @@
               <ion-icon name="close-outline"></ion-icon>
             </ion-button>
           </ion-buttons>
-        </ion-toolbar>
+        </ion-toolbar> 
       </ion-header>
       <ion-content>
         <div class="ion-padding">
           <ion-avatar>
-            <img src="https://www.facebook.com/photo?fbid=2773072476112974&set=a.102134959873419" alt="">
+            <img src="../../../assets/img/avatar.jpg" alt="">
           </ion-avatar>
-          <h1 class="ion-margin-top">{{nombre}}</h1>
-          <p class="ion-no-margin">{{gmail}}</p>
+          <h1 class="ion-margin-top">{{ name }}</h1>
+          <p class="ion-no-margin">{{ email }}</p>
         </div>
         <ion-list>
-          <ion-item lines="full">Configuración</ion-item>
+          <ion-item lines="full">
+            <ion-label>
+              <i class="fas fa-coins coin"></i> <span class="points">0 Puntos</span>
+            </ion-label>
+          </ion-item>
           <ion-item lines="full" (click)="logout()">Cerrar Sesión</ion-item>
         </ion-list>
       </ion-content>

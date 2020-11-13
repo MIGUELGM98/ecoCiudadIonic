@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyDXhXb0uXxO6EgaLO6ffpUez0w_6nRqD3Y",
-    authDomain: "ecociudad-bc7e9.firebaseapp.com",
-    databaseURL: "https://ecociudad-bc7e9.firebaseio.com/",
-    projectId: "ecociudad-bc7e9",
-    storageBucket: "ecociudad-bc7e9.appspot.com",
-    messagingSenderId: "1090174970570",
-    appId: "1:1090174970570:web:65e58af98cd83ac8ace233",
-    measurementId: "G-C847YHLSCG"
+    apiKey: "AIzaSyAvxg8s53Bsc-x7zIY9gjW6MKWq7w39yt8",
+    authDomain: "ecociudad-f6f20.firebaseapp.com",
+    databaseURL: "https://ecociudad-f6f20.firebaseio.com",
+    projectId: "ecociudad-f6f20",
+    storageBucket: "ecociudad-f6f20.appspot.com",
+    messagingSenderId: "301156988462",
+    appId: "1:301156988462:web:4d327ea3184618f65b51bf",
+    measurementId: "G-XFWN6PV4C2"
   },
 }; 
 

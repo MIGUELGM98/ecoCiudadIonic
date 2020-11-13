@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 import { LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthService } from './auth/auth.service';
 import { Utils } from './utils/ionic.utils';
 
 
@@ -15,9 +13,9 @@ import { Utils } from './utils/ionic.utils';
 })
 export class AppComponent {
 
-  nombre:string;
-  gmail:string;
-  urlphoto:string;
+  public name: string;
+  public email: string;
+
   private Utils_: Utils;
 
   constructor(
@@ -26,19 +24,17 @@ export class AppComponent {
     private statusBar: StatusBar,
     private menu: MenuController,
     private navCtrl: NavController,
-    public afAuth:AngularFireAuth,
-    public authService:AuthService
   ) {
-    this.Utils_ = new Utils(new LoadingController, null, null);
     this.initializeApp();
-    this.getData();
-  }
+    this.Utils_ = new Utils(new LoadingController, null, null);
+    this.name = 'Invitado';
+    this.email = 'contacto@fmodz.mx';
+  } 
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // this.statusBar.styleDefault();
-      this.statusBar.backgroundColorByHexString("#FFFFFF");
-      // this.statusBar.
+      this.statusBar.backgroundColorByHexString('#eaeaea');
+      this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
@@ -51,7 +47,6 @@ export class AppComponent {
 
     this.Utils_.presentLoading();
     setTimeout(() => {
-      this.afAuth.signOut();
       this.navCtrl.navigateRoot('/login', {animated: true});
       this.Utils_.stopLoading();
     }, 1000);
@@ -59,14 +54,4 @@ export class AppComponent {
       // this.gmail='';
   }
 
-  getData(){
-    this.authService.isAuth().subscribe(auth=>{
-      if(auth){
-        this.urlphoto=auth.photoURL;
-        this.gmail=auth.email;
-        this.nombre=auth.displayName;
-      }
-    })
-  }
- 
 }

@@ -13,6 +13,7 @@ export class ReportPage implements OnInit {
 
   public show: boolean;
   public form: FormGroup;
+  public comments: string;
 
   private util: Utils;
   private latLng: {};
@@ -23,6 +24,7 @@ export class ReportPage implements OnInit {
     private fb: FormBuilder
   ) {
     this.util = new Utils(new LoadingController, new ToastController, this.modalCtrl);
+    this.comments = '';
     this.show = false;
     this.latLng = {
       lat: 0,
@@ -50,13 +52,14 @@ export class ReportPage implements OnInit {
   }
 
   generate(){
-    console.log(this.form.value);
-    // this.util.presentLoading();
-    // setTimeout(() => {
-    //   this.util.stopLoading();
-    //   this.util.presentToast();
-    //   this.navCtrl.back();
-    // }, 1000);
+    // console.log(this.form.value);
+
+    this.util.presentLoading();
+    setTimeout(() => {
+      this.util.stopLoading();
+      this.util.presentToast();
+      this.navCtrl.back();
+    }, 1000);
   }
 
 }

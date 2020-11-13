@@ -1,68 +1,48 @@
 <ion-header>
   <ion-toolbar>
     <ion-title></ion-title>
-  </ion-toolbar>
+  </ion-toolbar> 
 </ion-header>
 <ion-content>
   <div class="reciclate">
     <h1 class="reciclate__h1 ion-margin-start ion-margin-top">Reciclar</h1>
-    <!-- <ion-slides pager="false" [options]="slide">
-      <ion-slide>
-        <div class="reciclate__card__item">
-          <input type="radio" name="reciclate" id="todo" checked>
-          <label for="todo">
-            <img src="../../../assets/img/bottle.png" alt="">
-            Todo
-          </label>
-        </div> 
+    <ion-slides pager="false" [options]="slide">
+
+      <ion-slide >
+        <label for="d">
+          <input type="radio" (click)="active(0)" name="type" id="d" checked>
+          <ion-card class="reciclate__card animate__animated animate__fadeIn">
+              <div class="reciclate__card__inner">
+                <div class="reciclate__card__item">
+                  Todos
+                </div>
+              </div>   
+          </ion-card>
+        </label>
       </ion-slide>
-      <ion-slide>
-        <div class="reciclate__card__item">
-          <input type="radio" name="reciclate" id="bottle">
-          <label for="bottle">
-            <img src="../../../assets/img/bottle.png" alt="">
-            Plastico
-          </label>
-        </div> 
+
+      <ion-slide *ngFor="let i of Types">
+        <label [for]="i.nombre">
+          <input type="radio" (click)="active(i.id)" name="type" [id]="i.nombre">
+          <ion-card class="reciclate__card animate__animated animate__fadeIn">
+              <div class="reciclate__card__inner">
+                <img src="{{url}}/icons/{{i.img}}" alt="">
+                <div class="reciclate__card__item">
+                  {{ i.nombre }}
+                </div>
+              </div>    
+          </ion-card>
+        </label>
       </ion-slide>
-      <ion-slide>
-        <div class="reciclate__card__item">
-          <input type="radio" name="reciclate" id="can">
-          <label for="can">
-            <img src="../../../assets/img/can.png" alt="">
-            Latas
-          </label>
-        </div> 
-      </ion-slide>
-      <ion-slide>
-        <div class="reciclate__card__item">
-          <input type="radio" name="reciclate" id="carton">
-          <label for="carton">
-            <img src="../../../assets/img/carton.png" alt="">
-            Cartón
-          </label>
-        </div> 
-      </ion-slide>
-      <ion-slide>
-        <div class="reciclate__card__item">
-          <input type="radio" name="reciclate" id="paper">
-          <label for="paper">
-            <img src="../../../assets/img/papel.png" alt="">
-            Papel
-          </label>
-        </div> 
-      </ion-slide>
-      <ion-slide>
-        <div class="reciclate__card__item">
-          <input type="radio" name="reciclate" id="tapa">
-          <label for="tapa">
-            <img src="../../../assets/img/tapa.png" alt="">
-            Vidrio
-          </label>
-        </div> 
-      </ion-slide>
-    </ion-slides> -->
-    
+     
+      <ng-container *ngIf="Types.length == 0">
+        <ion-slide *ngFor="let i of [1,1,1]">
+          <ion-skeleton-text style="width: 75px" animated></ion-skeleton-text>
+        </ion-slide>
+      </ng-container>
+
+    </ion-slides>
+
     <ng-container *ngIf="Products.length == 0">
       <ion-grid class="ion-padding">
         <ion-row>
@@ -75,7 +55,8 @@
     <ng-container *ngIf="Products">
       <ion-grid class="ion-padding">
         <ion-row>
-          <ion-col size="6" class="extra" *ngFor="let i of Products">
+          <ng-container  *ngFor="let i of Products">
+          <ion-col size="6" class="extra" *ngIf="i.Id_Tipo == id || id == 0">
             <ion-card class="extra__slides__product animate__animated animate__fadeIn" [routerLink]="['/product', i.id]">
               <div class="extra__slides__product__circle" [ngClass]="{
                 'yellow': i.Bote === 'Amarillo',
@@ -93,6 +74,7 @@
               </div>
             </ion-card>
           </ion-col>
+        </ng-container>
         </ion-row>
       </ion-grid>
     </ng-container>

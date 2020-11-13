@@ -10,15 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { Keyboard } from "@ionic-native/keyboard/ngx";
-import { Media } from "@ionic-native/media/ngx";
-
-import {AngularFireAuthModule} from "@angular/fire/auth";
-import {AngularFireModule} from "@angular/fire"
-import { environment } from 'src/environments/environment';
 import { ComponentsModule } from './components/components.module';
-
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,15 +20,11 @@ import { ComponentsModule } from './components/components.module';
     IonicModule.forRoot({mode: 'ios'}),
     AppRoutingModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
     ComponentsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    Keyboard,
-    Media,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

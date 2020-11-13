@@ -3,7 +3,8 @@ export interface Products{
     Bote: string,
     Producto: string,
     Img: string,
-    Tipo: string
+    Tipo: string,
+    Id_Tipo?: number
 }
 
 export interface Product{

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, MenuController, NavController, ToastController } from '@ionic/angular';
-import {AngularFireAuth} from "@angular/fire/auth";
-import  firebase  from 'firebase/app';
-import { AuthService } from '../auth.service';
 import { Utils } from 'src/app/utils/ionic.utils';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -18,53 +17,37 @@ export class LoginPage implements OnInit {
   constructor(
     public menu: MenuController,
     private navCtrl: NavController,
-    public afAuth:AngularFireAuth,
-    private authService:AuthService
+    private authService_: AuthService
   ) {
     this.Utils_ = new Utils(new LoadingController, new ToastController, undefined);
     this.isLoggin = false;
-    this.menu.enable(false);
-    this.menu.swipeGesture(false);
+    // this.menu.enable(false);
+    // this.menu.swipeGesture(false);
+  }
+
+  ionViewDidLeave(){
+    // this.menu.enable(true);
+    // this.menu.swipeGesture(true);
   }
 
   ngOnInit() {
-    this.getLogged();
   }
 
-  ionViewWillLeave(){
-    this.menu.enable(true);
-    this.menu.swipeGesture(true);
-  }
-
-  navigate(){
-    this.navCtrl.navigateRoot('/menu', {animated: true});
-  }
  
-  loginWithFacebook(){
-    this.afAuth.signInWithPopup( new firebase.auth.FacebookAuthProvider())
-      .catch(
-        err => {
-          //Manejo de errores
-          this.Utils_.presentToast("danger", "Operación cancelada por el usuario");
-          console.log("Error");
-        }
-      )
-    // this.getLogged();
+  logMe(){
+    this.navCtrl.navigateRoot('menu/home', {animated: true});
   }
 
-  getLogged(){
-    this.authService.isAuth().subscribe(
-      res => {
-        if(res){ 
-          this.Utils_.presentLoading();
-          setTimeout(() => {
-            console.log(res);
-            this.Utils_.stopLoading();
-            this.navCtrl.navigateRoot('/menu', {animated: true});
-          }, 1000);
-        }
-      }
-    );
-  }
+  // loginGoogle(){
+  //   this.authService_.loginGoogle().then(
+  //     res => {
+  //       console.log(res);
+  //     }
+  //   ).catch(
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   )
+  // }
 
 }

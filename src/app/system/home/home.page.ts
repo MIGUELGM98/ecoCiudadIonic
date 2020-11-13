@@ -25,12 +25,11 @@ export class HomePage implements OnInit {
     this.Products = new Array<Products>();
     this.url = AppSettings.DOMAIN;
     this.slide = {
-      slidesPerView: 'auto'
+      slidesPerView: 'auto' 
     }
   }
  
   ngOnInit() {
-
       //Tab reciclar
       this._typeService.getTypes().subscribe(
         res => {

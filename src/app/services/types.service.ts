@@ -11,7 +11,9 @@ export class TypesService {
 
   constructor(
     private _http: HttpClient
-  ) { }
+  ) {
+
+  }
 
   getTypes():Observable<Types[]>{
     return this._http.get<Types[]>(`${AppSettings.API_ENDPOINT}/types`);

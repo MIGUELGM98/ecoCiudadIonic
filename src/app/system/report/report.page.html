@@ -34,7 +34,7 @@
     </ion-item> -->
     <ion-item lines="full">
       <ion-label position="floating">Comentarios</ion-label>
-      <ion-input [disabled]="!show"></ion-input>
+      <ion-input [(ngModel)]="comments" [disabled]="!show"></ion-input>
     </ion-item>
   </ion-list>
   <ion-card class="bottle">
@@ -56,7 +56,7 @@
   </ion-card>
 </ion-content>
 <ion-footer>
-  <ion-button expand="block" (click)="generate()" color="secondary">
+  <ion-button expand="block" (click)="generate()" [disabled]="form.invalid" color="secondary">
     Enviar reporte
   </ion-button>
 </ion-footer>
