@@ -4,47 +4,57 @@ import { ModalController, NavController, Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { Keyboard } from "@ionic-native/keyboard/ngx";
+import { destroyView } from '@ionic/angular/directives/navigation/stack-utils';
+
 
 declare let buzz: any;
 declare let $: any;
 
+
 @Component({
-  selector: 'app-games',
+  selector: "app-games",
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './games.page.html',
-  styleUrls: ['./games.page.scss'],
+  templateUrl: "./games.page.html",
+  styleUrls: ["./games.page.scss"],
 })
-export class GamesPage{
+export class GamesPage {
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private keyboard: Keyboard,
-    public navCtrl:NavController,
-    private modalCtrl: ModalController,
+    public navCtrl: NavController,
+    private modalCtrl: ModalController
   ) {
-    this.initializeApp();
-   }
+    
+  }
 
-   initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+  
+  ngOnInit(){
+    this.initApp();
+  }
 
-     
-      this.initApp();
-    });
+  ngOnDestroy() {
+    
+    delete this.initApp
+  }
+
+  juegos() {
+    this.navCtrl.back();
   }
 
   initApp() {
+  this.platform.ready().then(() => {
+    this.statusBar.styleDefault();
+    this.splashScreen.hide();
     console.log("initApp");
     let debugmode = false;
 
     const states = Object.freeze({
       SplashScreen: 0,
       GameScreen: 1,
-      ScoreScreen: 2
+      ScoreScreen: 2,
     });
 
     let currentstate;
@@ -62,13 +72,13 @@ export class GamesPage{
     let pipeheight = 90;
     let pipewidth = 52;
     let pipes = new Array();
-    let jugo=false;
+    let jugo = false;
 
-    let replayclickable = false;
+    let replayclickable = true;
 
     // sounds
     let volume = 30;
-    let soundJump = new buzz.sound("assets/sounds/sfx_wing.ogg");
+    //let soundJump = new buzz.sound("assets/sounds/sfx_wing.ogg");
     let soundScore = new buzz.sound("assets/sounds/sfx_point.ogg");
     let soundHit = new buzz.sound("assets/sounds/sfx_hit.ogg");
     let soundDie = new buzz.sound("assets/sounds/sfx_die.ogg");
@@ -76,10 +86,10 @@ export class GamesPage{
     buzz.all().setVolume(volume);
 
     // loops
-    let loopGameloop;
+    let loopGameloop; 
     let loopPipeloop;
 
-    $(document).ready(function() {
+    $(document).ready(function () {
       if (window.location.search === "?debug") {
         debugmode = true;
       }
@@ -98,12 +108,13 @@ export class GamesPage{
     });
 
     // Handle space bar
-    $(document).keydown(function(e) {
+    $(document).keydown(function (e) {
       // space bar!
       if (e.keyCode === 32) {
         // in ScoreScreen, hitting space should click the "replay" button. else it's just a regular spacebar hit
         if (currentstate === states.ScoreScreen) {
           $("#replay").click();
+          e.stopPropagation(); 
         } else {
           screenClick();
         }
@@ -117,7 +128,7 @@ export class GamesPage{
       $(document).on("mousedown", screenClick);
     }
 
-    $("#replay").click(function() {
+    $("#replay").click(function () {
       // make sure we can only click once
       if (!replayclickable) {
         return;
@@ -133,7 +144,7 @@ export class GamesPage{
         { y: "-40px", opacity: 0 },
         1000,
         "ease",
-        function() {
+        function () {
           // when that's done, display us back to nothing
           $("#scoreboard").css("display", "none");
 
@@ -144,28 +155,28 @@ export class GamesPage{
     });
 
     const isIncompatible = {
-      Android: function() {
+      Android: function () {
         return navigator.userAgent.match(/Android/i);
       },
-      BlackBerry: function() {
+      BlackBerry: function () {
         return navigator.userAgent.match(/BlackBerry/i);
       },
-      iOS: function() {
+      iOS: function () {
         return navigator.userAgent.match(/iPhone|iPad|iPod/i);
       },
-      Opera: function() {
+      Opera: function () {
         return navigator.userAgent.match(/Opera Mini/i);
       },
-      Safari: function() {
+      Safari: function () {
         return (
           navigator.userAgent.match(/OS X.*Safari/) &&
           !navigator.userAgent.match(/Chrome/)
         );
       },
-      Windows: function() {
+      Windows: function () {
         return navigator.userAgent.match(/IEMobile/i);
       },
-      any: function() {
+      any: function () {
         return (
           isIncompatible.Android() ||
           isIncompatible.BlackBerry() ||
@@ -174,7 +185,7 @@ export class GamesPage{
           isIncompatible.Safari() ||
           isIncompatible.Windows()
         );
-      }
+      },
     };
 
     function getCookie(cname) {
@@ -203,7 +214,7 @@ export class GamesPage{
       velocity = 0;
       position = 180;
       rotation = 0;
-      score = 0;
+      score = 0; 
 
       // update the player in preparation for the next game
       $("#player").css({ y: 0, x: 0 });
@@ -256,7 +267,6 @@ export class GamesPage{
       // apply rotation and position
       $(player).css({ rotate: rotation, top: position });
     }
-    
 
     function gameloop() {
       var player = $("#player");
@@ -352,8 +362,8 @@ export class GamesPage{
     function playerJump() {
       velocity = jump;
       // play jump sound
-      soundJump.stop();
-      soundJump.play();
+      /* soundJump.stop();
+      soundJump.play(); */
     }
 
     function setBigScore(erase?) {
@@ -441,7 +451,7 @@ export class GamesPage{
         1000,
         "easeInOutCubic"
       );
-      jugo=true;
+      jugo = true;
 
       // it's time to change states. as of now we're considered ScoreScreen to disable left click/flying
       currentstate = states.ScoreScreen;
@@ -458,14 +468,12 @@ export class GamesPage{
         showScore();
       } else {
         // play the hit sound (then the dead sound) and then show score
-        soundHit.play().bindOnce("ended", function() {
-          soundDie.play().bindOnce("ended", function() {
+        soundHit.play().bindOnce("ended", function () {
+          soundDie.play().bindOnce("ended", function () {
             showScore();
           });
         });
       }
-      
-
     }
 
     function showScore() {
@@ -499,7 +507,7 @@ export class GamesPage{
         { y: "0px", opacity: 1 },
         600,
         "ease",
-        function() {
+        function () {
           // When the animation is done, animate in the replay button and SWOOSH!
           soundSwoosh.stop();
           soundSwoosh.play();
@@ -528,7 +536,7 @@ export class GamesPage{
     function updatePipes() {
       // Do any pipes need removal?
       $(".pipe")
-        .filter(function() {
+        .filter(function () {
           return $(this).position().left <= -100;
         })
         .remove();
@@ -548,14 +556,9 @@ export class GamesPage{
       $("#flyarea").append(newpipe);
       pipes.push(newpipe);
     }
-  }
-
-  ngOnDestroy(){
-    
-    this.juegos();
-  } 
   
-  juegos(){
-    this.navCtrl.back();
+    
+  });
   }
+ 
 }

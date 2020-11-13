@@ -22,7 +22,7 @@ export class GameListPage implements OnInit {
   }
 
   openGame(){
-    this.navCtrl.navigateForward('/games', {animated: true});
+    this.navCtrl.navigateRoot('/games', {animated: true});
   }
 
 }

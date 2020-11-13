@@ -1,7 +1,12 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title>ecoFlappy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  
-  <div id="gamecontainer">
-    <div id="gamescreen">
+  <div id="gamecontainer">   
+    <div id="gamescreen">      
       <div id="sky" class="animated">
         <div id="flyarea">
           <div id="ceiling" class="animated"></div>
@@ -16,13 +21,12 @@
             <div id="medal"></div>
             <div id="currentscore"></div>
             <div id="highscore"></div>
-            <div id="replay"><img src="../../../assets/game/replay.png" alt="replay"></div>
             <button class="back" (click)="juegos()">
-            <ion-icon name="close-outline"></ion-icon>
-            </button>
+              <ion-icon name="close-outline"></ion-icon>
+              </button>
+            <div id="replay"><img src="../../../assets/game/replay.png" alt="replay"></div>
+            
           </div>
-
-          <!-- Pipes go here! -->
         </div>
       </div>
       <div id="land" class="animated">

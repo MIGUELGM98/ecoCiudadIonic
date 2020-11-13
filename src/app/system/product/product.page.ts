@@ -20,7 +20,7 @@ export class ProductPage implements OnInit {
   constructor(
     private _productService: ProductService,
     private route: ActivatedRoute,
-    private navCtrl: NavController
+    public navCtrl: NavController
   ) {
     this.id = route.snapshot.params.id;
     this.Ideas = new Array<Ideas>();
